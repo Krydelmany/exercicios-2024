@@ -3,9 +3,9 @@
 namespace Chuva\Php\WebScrapping;
 
 use Box\Spout\Common\Entity\Style\Border;
-use Box\Spout\Common\Entity\Style\BorderBuilder;
 use Box\Spout\Common\Entity\Style\CellAlignment;
 use Box\Spout\Common\Entity\Style\Color;
+use Box\Spout\Writer\Common\Creator\Style\BorderBuilder;
 use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
 use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
 use Chuva\Php\WebScrapping\Entity\Paper;
@@ -15,24 +15,21 @@ use DOMXPath;
 /**
  * Does the scraping of a webpage and writes the data into a XLSX file.
  */
-class Scrapper
-{
+class Scrapper {
     /**
      * Loads paper information from the HTML, performs scraping, and writes the data into a XLSX file.
      *
      * @param \DOMDocument $dom  The DOMDocument object representing the HTML structure of the webpage.
      * @param string       $path The path where the XLSX file will be saved.
      */
-    public function scrapAndWriteXlsx(\DOMDocument $dom, string $path): void
-    {
+    public function scrapAndWriteXlsx(\DOMDocument $dom, string $path): void {
         $papers = $this->scrap($dom); // Perform scraping to get the data
 
         // Write the scraped data into a XLSX file
         $this->writeXlsx($papers, $path);
     }
 
-    public function scrap(\DOMDocument $document): array
-    {
+    public function scrap(\DOMDocument $document): array {
         $papers = [];
         $index = 0;
 
@@ -62,8 +59,7 @@ class Scrapper
         return $papers;
     }
 
-    public function writeXlsx(array $data, string $path): void
-    {
+    public function writeXlsx(array $data, string $path): void {
         $formattedData = $this->formatData($data);
 
         $writer = WriterEntityFactory::createXLSXWriter();
@@ -97,17 +93,11 @@ class Scrapper
         $writer->close();
     }
 
-    public function formatData(array $data): array
-    {
+    public function formatData(array $data): array {
         $formattedData = [];
 
         // Set header row
-        $formattedData[] = [
-            'ID', 'Title', 'Type', 'Author 1', 'Author 1 Institution', 'Author 2', 'Author 2 Institution',
-            'Author 3', 'Author 3 Institution', 'Author 4', 'Author 4 Institution', 'Author 5',
-            'Author 5 Institution', 'Author 6', 'Author 6 Institution', 'Author 7', 'Author 7 Institution',
-            'Author 8', 'Author 8 Institution', 'Author 9', 'Author 9 Institution'
-        ];
+        $formattedData[] = ['ID', 'Title', 'Type', 'Author 1', 'Author 1 Institution', 'Author 2', 'Author 2 Institution', 'Author 3', 'Author 3 Institution', 'Author 4', 'Author 4  Institution', 'Author 5', 'Author 5 Institution', 'Author 6', 'Author 6 Institution', 'Author 7', 'Author 7 Institution', 'Author 8', 'Author 8 Institution', 'Author 9',  'Author 9 Institution'];
 
         // Format data rows
         foreach ($data as $paper) {
