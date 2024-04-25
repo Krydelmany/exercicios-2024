@@ -23,12 +23,14 @@ class Scrapper {
    * @param string $path The path where the XLSX file will be saved.
    */
   public function scrapAndWriteXlsx(\DOMDocument $dom, string $path) : void {
+
     $papers = $this->scrap($dom); 
 
     // Write the scraped data into a XLSX file.
     $this->writeXlsx($papers, $path);
   }
 
+  // This function takes a \DOMDocument object as input returns paper objects.
   public function scrap(\DOMDocument $document): array {
     $papers = [];
     $index = 0;
@@ -59,6 +61,7 @@ class Scrapper {
     return $papers;
   }
 
+  // Function writeXlsx: Writes data to an XLSX file.
   public function writeXlsx(array $data, string $path): void {
     $formattedData = $this->formatData($data);
 
@@ -116,8 +119,7 @@ class Scrapper {
       'Author 7 Institution',
       'Author 8',
       'Author 8 Institution',
-      'Author 9',
-      'Author 9 Institution'
+      'Author 9', 'Author 9 Institution'
       ];
 
     // Format data rows.
@@ -125,8 +127,8 @@ class Scrapper {
       $formattedPaper = [
         $paper->id,
         $paper->title,
-        $paper->type, 
-        ];
+        $paper->type,
+    ];
 
       foreach ($paper->authors as $author) {
         $formattedPaper[] = $author->name;
