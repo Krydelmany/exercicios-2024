@@ -7,7 +7,6 @@ namespace Chuva\Php\WebScrapping\Entity;
  */
 class Paper
 {
-
     /**
      * Paper Id.
      *
@@ -46,5 +45,4 @@ class Paper
         $this->type = $type;
         $this->authors = $authors;
     }
-
 }

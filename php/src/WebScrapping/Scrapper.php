@@ -10,7 +10,6 @@ use Box\Spout\Common\Entity\Style\Border;
 use Box\Spout\Common\Entity\Style\Color;
 use Chuva\Php\WebScrapping\Entity\Paper;
 use Chuva\Php\WebScrapping\Entity\Person;
-
 use DOMXPath;
 
 /**
@@ -56,7 +55,7 @@ class Scrapper
 
             $paperInstance = new Paper($paperId, $paperTitle, $paperType, $authors);
             $papers[] = $paperInstance;
-        
+
             $index++;
         }
 
@@ -74,7 +73,7 @@ class Scrapper
         $border = (new BorderBuilder())
             ->setBorderBottom(Color::BLACK, Border::WIDTH_THIN, Border::STYLE_SOLID)
             ->build();
-      
+
         // Set styles
         $style = (new StyleBuilder())
             ->setFontBold()

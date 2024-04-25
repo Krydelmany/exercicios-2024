@@ -7,7 +7,6 @@ namespace Chuva\Php\WebScrapping\Entity;
  */
 class Person
 {
-
     /**
      * Person name.
      */
@@ -26,5 +25,4 @@ class Person
         $this->name = $name;
         $this->institution = $institution;
     }
-
 }
