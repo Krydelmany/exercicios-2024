@@ -15,17 +15,24 @@ class WorkbookManager extends WorkbookManagerAbstract
 {
     /**
      * Maximum number of rows a ODS sheet can contain
+     *
      * @see https://ask.libreoffice.org/en/question/8631/upper-limit-to-number-of-rows-in-calc/
      */
     protected static $maxRowsPerWorksheet = 1048576;
 
-    /** @var WorksheetManager Object used to manage worksheets */
+    /**
+     * @var WorksheetManager Object used to manage worksheets 
+     */
     protected $worksheetManager;
 
-    /** @var FileSystemHelper Helper to perform file system operations */
+    /**
+     * @var FileSystemHelper Helper to perform file system operations 
+     */
     protected $fileSystemHelper;
 
-    /** @var StyleManager Manages styles */
+    /**
+     * @var StyleManager Manages styles 
+     */
     protected $styleManager;
 
     /**
@@ -37,7 +44,7 @@ class WorkbookManager extends WorkbookManagerAbstract
     }
 
     /**
-     * @param Sheet $sheet
+     * @param  Sheet $sheet
      * @return string The file path where the data for the given sheet will be stored
      */
     public function getWorksheetFilePath(Sheet $sheet)
@@ -50,7 +57,7 @@ class WorkbookManager extends WorkbookManagerAbstract
     /**
      * Writes all the necessary files to disk and zip them together to create the final file.
      *
-     * @param resource $finalFilePointer Pointer to the spreadsheet that will be created
+     * @param  resource $finalFilePointer Pointer to the spreadsheet that will be created
      * @return void
      */
     protected function writeAllFilesToDiskAndZipThem($finalFilePointer)

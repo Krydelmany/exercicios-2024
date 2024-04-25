@@ -54,7 +54,7 @@ class DateFormatHelper
     /**
      * Converts the given Excel date format to a format understandable by the PHP date function.
      *
-     * @param string $excelDateFormat Excel date format
+     * @param  string $excelDateFormat Excel date format
      * @return string PHP date format (as defined here: http://php.net/manual/en/function.date.php)
      */
     public static function toPHPDateFormat($excelDateFormat)
@@ -102,18 +102,20 @@ class DateFormatHelper
         // Finally, to have the date format compatible with the DateTime::format() function, we need to escape
         // all characters that are inside double quotes (and double quotes must be removed).
         // For instance, ["Day " dd] should become [\D\a\y\ dd]
-        $phpDateFormat = \preg_replace_callback('/"(.+?)"/', function ($matches) {
-            $stringToEscape = $matches[1];
-            $letters = \preg_split('//u', $stringToEscape, -1, PREG_SPLIT_NO_EMPTY);
+        $phpDateFormat = \preg_replace_callback(
+            '/"(.+?)"/', function ($matches) {
+                $stringToEscape = $matches[1];
+                $letters = \preg_split('//u', $stringToEscape, -1, PREG_SPLIT_NO_EMPTY);
 
-            return '\\' . \implode('\\', $letters);
-        }, $phpDateFormat);
+                return '\\' . \implode('\\', $letters);
+            }, $phpDateFormat
+        );
 
         return $phpDateFormat;
     }
 
     /**
-     * @param string $excelDateFormat Date format as defined by Excel
+     * @param  string $excelDateFormat Date format as defined by Excel
      * @return bool Whether the given date format has the 12-hour format marker
      */
     private static function has12HourFormatMarker($excelDateFormat)

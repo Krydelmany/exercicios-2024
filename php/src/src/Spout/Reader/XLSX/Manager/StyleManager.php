@@ -10,18 +10,24 @@ use Box\Spout\Reader\XLSX\Creator\InternalEntityFactory;
  */
 class StyleManager
 {
-    /** Nodes used to find relevant information in the styles XML file */
+    /**
+ * Nodes used to find relevant information in the styles XML file 
+*/
     const XML_NODE_NUM_FMTS = 'numFmts';
     const XML_NODE_NUM_FMT = 'numFmt';
     const XML_NODE_CELL_XFS = 'cellXfs';
     const XML_NODE_XF = 'xf';
 
-    /** Attributes used to find relevant information in the styles XML file */
+    /**
+ * Attributes used to find relevant information in the styles XML file 
+*/
     const XML_ATTRIBUTE_NUM_FMT_ID = 'numFmtId';
     const XML_ATTRIBUTE_FORMAT_CODE = 'formatCode';
     const XML_ATTRIBUTE_APPLY_NUMBER_FORMAT = 'applyNumberFormat';
 
-    /** By convention, default style ID is 0 */
+    /**
+ * By convention, default style ID is 0 
+*/
     const DEFAULT_STYLE_ID = 0;
 
     const NUMBER_FORMAT_GENERAL = 'General';
@@ -45,34 +51,50 @@ class StyleManager
         47 => 'mm:ss.0',  // @NOTE: ECMA spec is 'mmss.0',
     ];
 
-    /** @var string Path of the XLSX file being read */
+    /**
+     * @var string Path of the XLSX file being read 
+     */
     protected $filePath;
 
-    /** @var bool Whether the XLSX file contains a styles XML file */
+    /**
+     * @var bool Whether the XLSX file contains a styles XML file 
+     */
     protected $hasStylesXMLFile;
 
-    /** @var string|null Path of the styles XML file */
+    /**
+     * @var string|null Path of the styles XML file 
+     */
     protected $stylesXMLFilePath;
 
-    /** @var InternalEntityFactory Factory to create entities */
+    /**
+     * @var InternalEntityFactory Factory to create entities 
+     */
     protected $entityFactory;
 
-    /** @var array Array containing the IDs of built-in number formats indicating a date */
+    /**
+     * @var array Array containing the IDs of built-in number formats indicating a date 
+     */
     protected $builtinNumFmtIdIndicatingDates;
 
-    /** @var array Array containing a mapping NUM_FMT_ID => FORMAT_CODE */
+    /**
+     * @var array Array containing a mapping NUM_FMT_ID => FORMAT_CODE 
+     */
     protected $customNumberFormats;
 
-    /** @var array Array containing a mapping STYLE_ID => [STYLE_ATTRIBUTES] */
+    /**
+     * @var array Array containing a mapping STYLE_ID => [STYLE_ATTRIBUTES] 
+     */
     protected $stylesAttributes;
 
-    /** @var array Cache containing a mapping NUM_FMT_ID => IS_DATE_FORMAT. Used to avoid lots of recalculations */
+    /**
+     * @var array Cache containing a mapping NUM_FMT_ID => IS_DATE_FORMAT. Used to avoid lots of recalculations 
+     */
     protected $numFmtIdToIsDateFormatCache = [];
 
     /**
-     * @param string $filePath Path of the XLSX file being read
+     * @param string                       $filePath                     Path of the XLSX file being read
      * @param WorkbookRelationshipsManager $workbookRelationshipsManager Helps retrieving workbook relationships
-     * @param InternalEntityFactory $entityFactory Factory to create entities
+     * @param InternalEntityFactory        $entityFactory                Factory to create entities
      */
     public function __construct($filePath, $workbookRelationshipsManager, $entityFactory)
     {
@@ -89,7 +111,7 @@ class StyleManager
      * Returns whether the style with the given ID should consider
      * numeric values as timestamps and format the cell as a date.
      *
-     * @param int $styleId Zero-based style ID
+     * @param  int $styleId Zero-based style ID
      * @return bool Whether the cell with the given cell should display a date instead of a numeric value
      */
     public function shouldFormatNumericValueAsDate($styleId)
@@ -142,7 +164,7 @@ class StyleManager
      * For simplicity, the styles attributes are kept in memory. This is possible thanks
      * to the reuse of formats. So 1 million cells should not use 1 million formats.
      *
-     * @param \Box\Spout\Reader\Wrapper\XMLReader $xmlReader XML Reader positioned on the "numFmts" node
+     * @param  \Box\Spout\Reader\Wrapper\XMLReader $xmlReader XML Reader positioned on the "numFmts" node
      * @return void
      */
     protected function extractNumberFormats($xmlReader)
@@ -164,7 +186,7 @@ class StyleManager
      * For simplicity, the styles attributes are kept in memory. This is possible thanks
      * to the reuse of styles. So 1 million cells should not use 1 million styles.
      *
-     * @param \Box\Spout\Reader\Wrapper\XMLReader $xmlReader XML Reader positioned on the "cellXfs" node
+     * @param  \Box\Spout\Reader\Wrapper\XMLReader $xmlReader XML Reader positioned on the "cellXfs" node
      * @return void
      */
     protected function extractStyleAttributes($xmlReader)
@@ -213,7 +235,7 @@ class StyleManager
     }
 
     /**
-     * @param array $styleAttributes Array containing the style attributes (2 keys: "applyNumberFormat" and "numFmtId")
+     * @param  array $styleAttributes Array containing the style attributes (2 keys: "applyNumberFormat" and "numFmtId")
      * @return bool Whether the style with the given attributes indicates that the number is a date
      */
     protected function doesStyleIndicateDate($styleAttributes)
@@ -238,7 +260,7 @@ class StyleManager
      * The result is cached to avoid recomputing the same thing over and over, as
      * "numFmtId" attributes can be shared between multiple styles.
      *
-     * @param int $numFmtId
+     * @param  int $numFmtId
      * @return bool Whether the number format ID indicates that the number is a date
      */
     protected function doesNumFmtIdIndicateDate($numFmtId)
@@ -256,7 +278,7 @@ class StyleManager
     }
 
     /**
-     * @param int $numFmtId
+     * @param  int $numFmtId
      * @return string|null The custom number format or NULL if none defined for the given numFmtId
      */
     protected function getFormatCodeForNumFmtId($numFmtId)
@@ -268,7 +290,7 @@ class StyleManager
     }
 
     /**
-     * @param int $numFmtId
+     * @param  int $numFmtId
      * @return bool Whether the number format ID indicates that the number is a date
      */
     protected function isNumFmtIdBuiltInDateFormat($numFmtId)
@@ -277,7 +299,7 @@ class StyleManager
     }
 
     /**
-     * @param string|null $formatCode
+     * @param  string|null $formatCode
      * @return bool Whether the given format code indicates that the number is a date
      */
     protected function isFormatCodeCustomDateFormat($formatCode)
@@ -291,7 +313,7 @@ class StyleManager
     }
 
     /**
-     * @param string $formatCode
+     * @param  string $formatCode
      * @return bool Whether the given format code matches a date format pattern
      */
     protected function isFormatCodeMatchingDateFormatPattern($formatCode)
@@ -323,7 +345,7 @@ class StyleManager
      * Returns the format as defined in "styles.xml" of the given style.
      * NOTE: It is assumed that the style DOES have a number format associated to it.
      *
-     * @param int $styleId Zero-based style ID
+     * @param  int $styleId Zero-based style ID
      * @return string The number format code associated with the given style
      */
     public function getNumberFormatCode($styleId)

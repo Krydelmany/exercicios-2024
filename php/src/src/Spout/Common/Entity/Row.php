@@ -8,19 +8,22 @@ class Row
 {
     /**
      * The cells in this row
+     *
      * @var Cell[]
      */
     protected $cells = [];
 
     /**
      * The row style
+     *
      * @var Style
      */
     protected $style;
 
     /**
      * Row constructor.
-     * @param Cell[] $cells
+     *
+     * @param Cell[]     $cells
      * @param Style|null $style
      */
     public function __construct(array $cells, $style)
@@ -39,7 +42,7 @@ class Row
     }
 
     /**
-     * @param Cell[] $cells
+     * @param  Cell[] $cells
      * @return Row
      */
     public function setCells(array $cells)
@@ -53,8 +56,8 @@ class Row
     }
 
     /**
-     * @param Cell $cell
-     * @param int $cellIndex
+     * @param  Cell $cell
+     * @param  int  $cellIndex
      * @return Row
      */
     public function setCellAtIndex(Cell $cell, $cellIndex)
@@ -65,7 +68,7 @@ class Row
     }
 
     /**
-     * @param int $cellIndex
+     * @param  int $cellIndex
      * @return Cell|null
      */
     public function getCellAtIndex($cellIndex)
@@ -74,7 +77,7 @@ class Row
     }
 
     /**
-     * @param Cell $cell
+     * @param  Cell $cell
      * @return Row
      */
     public function addCell(Cell $cell)
@@ -107,7 +110,7 @@ class Row
     }
 
     /**
-     * @param Style|null $style
+     * @param  Style|null $style
      * @return Row
      */
     public function setStyle($style)
@@ -122,8 +125,10 @@ class Row
      */
     public function toArray()
     {
-        return \array_map(function (Cell $cell) {
-            return $cell->getValue();
-        }, $this->cells);
+        return \array_map(
+            function (Cell $cell) {
+                return $cell->getValue();
+            }, $this->cells
+        );
     }
 }

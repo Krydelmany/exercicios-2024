@@ -11,7 +11,7 @@ use Box\Spout\Reader\Common\Manager\RowManager;
 class ManagerFactory
 {
     /**
-     * @param InternalEntityFactory $entityFactory Factory to create entities
+     * @param  InternalEntityFactory $entityFactory Factory to create entities
      * @return RowManager
      */
     public function createRowManager($entityFactory)

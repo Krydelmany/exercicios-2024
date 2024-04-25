@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2341209b83b8297f0cc0ca7bf8d5ad55",
+    "content-hash": "a71787dc9c37f4521d2429e664811c4d",
     "packages": [
         {
             "name": "box/spout",
@@ -513,12 +513,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "30b3148b302aaba28d72bdb2432b144ff9d47751"
+                "reference": "9a0c2546ea2fa7aac19881da7b655cc5f022bc10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/30b3148b302aaba28d72bdb2432b144ff9d47751",
-                "reference": "30b3148b302aaba28d72bdb2432b144ff9d47751",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/9a0c2546ea2fa7aac19881da7b655cc5f022bc10",
+                "reference": "9a0c2546ea2fa7aac19881da7b655cc5f022bc10",
                 "shasum": ""
             },
             "require": {
@@ -586,7 +586,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-04-15T00:54:15+00:00"
+            "time": "2024-04-24T15:14:01+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",

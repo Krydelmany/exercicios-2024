@@ -8,16 +8,24 @@ namespace Box\Spout\Common\Helper\Escaper;
  */
 class XLSX implements EscaperInterface
 {
-    /** @var bool Whether the escaper has already been initialized */
+    /**
+     * @var bool Whether the escaper has already been initialized 
+     */
     private $isAlreadyInitialized = false;
 
-    /** @var string Regex pattern to detect control characters that need to be escaped */
+    /**
+     * @var string Regex pattern to detect control characters that need to be escaped 
+     */
     private $escapableControlCharactersPattern;
 
-    /** @var string[] Map containing control characters to be escaped (key) and their escaped value (value) */
+    /**
+     * @var string[] Map containing control characters to be escaped (key) and their escaped value (value) 
+     */
     private $controlCharactersEscapingMap;
 
-    /** @var string[] Map containing control characters to be escaped (value) and their escaped value (key) */
+    /**
+     * @var string[] Map containing control characters to be escaped (value) and their escaped value (key) 
+     */
     private $controlCharactersEscapingReverseMap;
 
     /**
@@ -37,7 +45,7 @@ class XLSX implements EscaperInterface
     /**
      * Escapes the given string to make it compatible with XLSX
      *
-     * @param string $string The string to escape
+     * @param  string $string The string to escape
      * @return string The escaped string
      */
     public function escape($string)
@@ -55,7 +63,7 @@ class XLSX implements EscaperInterface
     /**
      * Unescapes the given string to make it compatible with XLSX
      *
-     * @param string $string The string to unescape
+     * @param  string $string The string to unescape
      * @return string The unescaped string
      */
     public function unescape($string)
@@ -93,6 +101,7 @@ class XLSX implements EscaperInterface
      * "\t", "\r" and "\n" don't need to be escaped.
      *
      * NOTE: the logic has been adapted from the XlsxWriter library (BSD License)
+     *
      * @see https://github.com/jmcnamara/XlsxWriter/blob/f1e610f29/xlsxwriter/sharedstrings.py#L89
      *
      * @return string[]
@@ -122,9 +131,10 @@ class XLSX implements EscaperInterface
      * So "\0" -> _x0000_ and "_x0000_" -> _x005F_x0000_.
      *
      * NOTE: the logic has been adapted from the XlsxWriter library (BSD License)
+     *
      * @see https://github.com/jmcnamara/XlsxWriter/blob/f1e610f29/xlsxwriter/sharedstrings.py#L89
      *
-     * @param string $string String to escape
+     * @param  string $string String to escape
      * @return string
      */
     protected function escapeControlCharacters($string)
@@ -136,15 +146,17 @@ class XLSX implements EscaperInterface
             return $escapedString;
         }
 
-        return \preg_replace_callback("/({$this->escapableControlCharactersPattern})/", function ($matches) {
-            return $this->controlCharactersEscapingReverseMap[$matches[0]];
-        }, $escapedString);
+        return \preg_replace_callback(
+            "/({$this->escapableControlCharactersPattern})/", function ($matches) {
+                return $this->controlCharactersEscapingReverseMap[$matches[0]];
+            }, $escapedString
+        );
     }
 
     /**
      * Escapes the escape character: "_x0000_" -> "_x005F_x0000_"
      *
-     * @param string $string String to escape
+     * @param  string $string String to escape
      * @return string The escaped string
      */
     protected function escapeEscapeCharacter($string)
@@ -160,9 +172,10 @@ class XLSX implements EscaperInterface
      * So "_x0000_" -> "\0" and "_x005F_x0000_" -> "_x0000_"
      *
      * NOTE: the logic has been adapted from the XlsxWriter library (BSD License)
+     *
      * @see https://github.com/jmcnamara/XlsxWriter/blob/f1e610f29/xlsxwriter/sharedstrings.py#L89
      *
-     * @param string $string String to unescape
+     * @param  string $string String to unescape
      * @return string
      */
     protected function unescapeControlCharacters($string)
@@ -180,7 +193,7 @@ class XLSX implements EscaperInterface
     /**
      * Unecapes the escape character: "_x005F_x0000_" => "_x0000_"
      *
-     * @param string $string String to unescape
+     * @param  string $string String to unescape
      * @return string The unescaped string
      */
     protected function unescapeEscapeCharacter($string)

@@ -9,7 +9,9 @@ use Box\Spout\Reader\Exception\XMLProcessingException;
  */
 trait XMLInternalErrorsHelper
 {
-    /** @var bool Stores whether XML errors were initially stored internally - used to reset */
+    /**
+     * @var bool Stores whether XML errors were initially stored internally - used to reset 
+     */
     protected $initialUseInternalErrorsValue;
 
     /**
@@ -53,6 +55,7 @@ trait XMLInternalErrorsHelper
 
     /**
      * Returns the error message for the last XML error that occured.
+     *
      * @see libxml_get_last_error
      *
      * @return string|null Last XML error message or null if no error

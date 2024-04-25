@@ -21,31 +21,45 @@ use Box\Spout\Writer\Exception\WriterNotOpenedException;
  */
 abstract class WriterAbstract implements WriterInterface
 {
-    /** @var string Path to the output file */
+    /**
+     * @var string Path to the output file 
+     */
     protected $outputFilePath;
 
-    /** @var resource Pointer to the file/stream we will write to */
+    /**
+     * @var resource Pointer to the file/stream we will write to 
+     */
     protected $filePointer;
 
-    /** @var bool Indicates whether the writer has been opened or not */
+    /**
+     * @var bool Indicates whether the writer has been opened or not 
+     */
     protected $isWriterOpened = false;
 
-    /** @var GlobalFunctionsHelper Helper to work with global functions */
+    /**
+     * @var GlobalFunctionsHelper Helper to work with global functions 
+     */
     protected $globalFunctionsHelper;
 
-    /** @var HelperFactory */
+    /**
+     * @var HelperFactory 
+     */
     protected $helperFactory;
 
-    /** @var OptionsManagerInterface Writer options manager */
+    /**
+     * @var OptionsManagerInterface Writer options manager 
+     */
     protected $optionsManager;
 
-    /** @var string Content-Type value for the header - to be defined by child class */
+    /**
+     * @var string Content-Type value for the header - to be defined by child class 
+     */
     protected static $headerContentType;
 
     /**
      * @param OptionsManagerInterface $optionsManager
-     * @param GlobalFunctionsHelper $globalFunctionsHelper
-     * @param HelperFactory $helperFactory
+     * @param GlobalFunctionsHelper   $globalFunctionsHelper
+     * @param HelperFactory           $helperFactory
      */
     public function __construct(
         OptionsManagerInterface $optionsManager,
@@ -68,7 +82,7 @@ abstract class WriterAbstract implements WriterInterface
     /**
      * Adds a row to the currently opened writer.
      *
-     * @param Row $row The row containing cells and styles
+     * @param  Row $row The row containing cells and styles
      * @throws WriterNotOpenedException If the workbook is not created yet
      * @throws IOException If unable to write data
      * @return void
@@ -178,7 +192,7 @@ abstract class WriterAbstract implements WriterInterface
      * Checks if the writer has already been opened, since some actions must be done before it gets opened.
      * Throws an exception if already opened.
      *
-     * @param string $message Error message
+     * @param  string $message Error message
      * @throws WriterAlreadyOpenedException If the writer was already opened and must not be.
      * @return void
      */

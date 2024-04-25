@@ -13,13 +13,15 @@ use Box\Spout\Writer\ODS\Helper\BorderHelper;
  */
 class StyleManager extends \Box\Spout\Writer\Common\Manager\Style\StyleManager
 {
-    /** @var StyleRegistry */
+    /**
+     * @var StyleRegistry 
+     */
     protected $styleRegistry;
 
     /**
      * Returns the content of the "styles.xml" file, given a list of styles.
      *
-     * @param int $numWorksheets Number of worksheets created
+     * @param  int $numWorksheets Number of worksheets created
      * @return string
      */
     public function getStylesXMLFileContent($numWorksheets)
@@ -84,7 +86,7 @@ EOD;
     /**
      * Returns the content of the "<office:automatic-styles>" section, inside "styles.xml" file.
      *
-     * @param int $numWorksheets Number of worksheets created
+     * @param  int $numWorksheets Number of worksheets created
      * @return string
      */
     protected function getAutomaticStylesSectionContent($numWorksheets)
@@ -109,7 +111,7 @@ EOD;
     /**
      * Returns the content of the "<office:master-styles>" section, inside "styles.xml" file.
      *
-     * @param int $numWorksheets Number of worksheets created
+     * @param  int $numWorksheets Number of worksheets created
      * @return string
      */
     protected function getMasterStylesSectionContent($numWorksheets)
@@ -151,7 +153,7 @@ EOD;
     /**
      * Returns the contents of the "<office:automatic-styles>" section, inside "content.xml" file.
      *
-     * @param Worksheet[] $worksheets
+     * @param  Worksheet[] $worksheets
      * @return string
      */
     public function getContentXmlAutomaticStylesSectionContent($worksheets)
@@ -190,7 +192,7 @@ EOD;
     /**
      * Returns the contents of the "<style:style>" section, inside "<office:automatic-styles>" section
      *
-     * @param \Box\Spout\Common\Entity\Style\Style $style
+     * @param  \Box\Spout\Common\Entity\Style\Style $style
      * @return string
      */
     protected function getStyleSectionContent($style)
@@ -211,7 +213,7 @@ EOD;
     /**
      * Returns the contents of the "<style:text-properties>" section, inside "<style:style>" section
      *
-     * @param \Box\Spout\Common\Entity\Style\Style $style
+     * @param  \Box\Spout\Common\Entity\Style\Style $style
      * @return string
      */
     private function getTextPropertiesSectionContent($style)
@@ -313,16 +315,19 @@ EOD;
     private function transformCellAlignment($cellAlignment)
     {
         switch ($cellAlignment) {
-            case CellAlignment::LEFT: return 'start';
-            case CellAlignment::RIGHT: return 'end';
-            default: return $cellAlignment;
+        case CellAlignment::LEFT: 
+            return 'start';
+        case CellAlignment::RIGHT: 
+            return 'end';
+        default: 
+            return $cellAlignment;
         }
     }
 
     /**
      * Returns the contents of the "<style:table-cell-properties>" section, inside "<style:style>" section
      *
-     * @param \Box\Spout\Common\Entity\Style\Style $style
+     * @param  \Box\Spout\Common\Entity\Style\Style $style
      * @return string
      */
     private function getTableCellPropertiesSectionContent($style)
@@ -359,14 +364,16 @@ EOD;
     /**
      * Returns the contents of the borders definition for the "<style:table-cell-properties>" section
      *
-     * @param \Box\Spout\Common\Entity\Style\Style $style
+     * @param  \Box\Spout\Common\Entity\Style\Style $style
      * @return string
      */
     private function getBorderXMLContent($style)
     {
-        $borders = \array_map(function (BorderPart $borderPart) {
-            return BorderHelper::serializeBorderPart($borderPart);
-        }, $style->getBorder()->getParts());
+        $borders = \array_map(
+            function (BorderPart $borderPart) {
+                return BorderHelper::serializeBorderPart($borderPart);
+            }, $style->getBorder()->getParts()
+        );
 
         return \sprintf(' %s ', \implode(' ', $borders));
     }
@@ -374,7 +381,7 @@ EOD;
     /**
      * Returns the contents of the background color definition for the "<style:table-cell-properties>" section
      *
-     * @param \Box\Spout\Common\Entity\Style\Style $style
+     * @param  \Box\Spout\Common\Entity\Style\Style $style
      * @return string
      */
     private function getBackgroundColorXMLContent($style)

@@ -17,8 +17,8 @@ use Box\Spout\Writer\ODS\Helper\FileSystemHelper;
 class HelperFactory extends \Box\Spout\Common\Creator\HelperFactory
 {
     /**
-     * @param OptionsManagerInterface $optionsManager
-     * @param InternalEntityFactory $entityFactory
+     * @param  OptionsManagerInterface $optionsManager
+     * @param  InternalEntityFactory   $entityFactory
      * @return FileSystemHelper
      */
     public function createSpecificFileSystemHelper(OptionsManagerInterface $optionsManager, InternalEntityFactory $entityFactory)
@@ -30,7 +30,7 @@ class HelperFactory extends \Box\Spout\Common\Creator\HelperFactory
     }
 
     /**
-     * @param $entityFactory
+     * @param  $entityFactory
      * @return ZipHelper
      */
     private function createZipHelper($entityFactory)

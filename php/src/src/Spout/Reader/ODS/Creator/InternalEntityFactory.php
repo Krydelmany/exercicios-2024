@@ -18,14 +18,18 @@ use Box\Spout\Reader\Wrapper\XMLReader;
  */
 class InternalEntityFactory implements InternalEntityFactoryInterface
 {
-    /** @var HelperFactory */
+    /**
+     * @var HelperFactory 
+     */
     private $helperFactory;
 
-    /** @var ManagerFactory */
+    /**
+     * @var ManagerFactory 
+     */
     private $managerFactory;
 
     /**
-     * @param HelperFactory $helperFactory
+     * @param HelperFactory  $helperFactory
      * @param ManagerFactory $managerFactory
      */
     public function __construct(HelperFactory $helperFactory, ManagerFactory $managerFactory)
@@ -35,8 +39,8 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param string $filePath Path of the file to be read
-     * @param \Box\Spout\Common\Manager\OptionsManagerInterface $optionsManager Reader's options manager
+     * @param  string                                            $filePath       Path of the file to be read
+     * @param  \Box\Spout\Common\Manager\OptionsManagerInterface $optionsManager Reader's options manager
      * @return SheetIterator
      */
     public function createSheetIterator($filePath, $optionsManager)
@@ -48,12 +52,12 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param XMLReader $xmlReader XML Reader
-     * @param int $sheetIndex Index of the sheet, based on order in the workbook (zero-based)
-     * @param string $sheetName Name of the sheet
-     * @param bool $isSheetActive Whether the sheet was defined as active
-     * @param bool $isSheetVisible Whether the sheet is visible
-     * @param \Box\Spout\Common\Manager\OptionsManagerInterface $optionsManager Reader's options manager
+     * @param  XMLReader                                         $xmlReader      XML Reader
+     * @param  int                                               $sheetIndex     Index of the sheet, based on order in the workbook (zero-based)
+     * @param  string                                            $sheetName      Name of the sheet
+     * @param  bool                                              $isSheetActive  Whether the sheet was defined as active
+     * @param  bool                                              $isSheetVisible Whether the sheet is visible
+     * @param  \Box\Spout\Common\Manager\OptionsManagerInterface $optionsManager Reader's options manager
      * @return Sheet
      */
     public function createSheet($xmlReader, $sheetIndex, $sheetName, $isSheetActive, $isSheetVisible, $optionsManager)
@@ -64,8 +68,8 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param XMLReader $xmlReader XML Reader
-     * @param \Box\Spout\Common\Manager\OptionsManagerInterface $optionsManager Reader's options manager
+     * @param  XMLReader                                         $xmlReader      XML Reader
+     * @param  \Box\Spout\Common\Manager\OptionsManagerInterface $optionsManager Reader's options manager
      * @return RowIterator
      */
     private function createRowIterator($xmlReader, $optionsManager)
@@ -79,7 +83,7 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param Cell[] $cells
+     * @param  Cell[] $cells
      * @return Row
      */
     public function createRow(array $cells = [])
@@ -88,7 +92,7 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param mixed $cellValue
+     * @param  mixed $cellValue
      * @return Cell
      */
     public function createCell($cellValue)
@@ -105,7 +109,7 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param $xmlReader
+     * @param  $xmlReader
      * @return XMLProcessor
      */
     private function createXMLProcessor($xmlReader)

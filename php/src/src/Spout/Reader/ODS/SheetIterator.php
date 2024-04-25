@@ -19,7 +19,9 @@ class SheetIterator implements IteratorInterface
 
     const XML_STYLE_NAMESPACE = 'urn:oasis:names:tc:opendocument:xmlns:style:1.0';
 
-    /** Definition of XML nodes name and attribute used to parse sheet data */
+    /**
+ * Definition of XML nodes name and attribute used to parse sheet data 
+*/
     const XML_NODE_AUTOMATIC_STYLES = 'office:automatic-styles';
     const XML_NODE_STYLE_TABLE_PROPERTIES = 'table-properties';
     const XML_NODE_TABLE = 'table:table';
@@ -28,39 +30,57 @@ class SheetIterator implements IteratorInterface
     const XML_ATTRIBUTE_TABLE_STYLE_NAME = 'table:style-name';
     const XML_ATTRIBUTE_TABLE_DISPLAY = 'table:display';
 
-    /** @var string Path of the file to be read */
+    /**
+     * @var string Path of the file to be read 
+     */
     protected $filePath;
 
-    /** @var \Box\Spout\Common\Manager\OptionsManagerInterface Reader's options manager */
+    /**
+     * @var \Box\Spout\Common\Manager\OptionsManagerInterface Reader's options manager 
+     */
     protected $optionsManager;
 
-    /** @var InternalEntityFactory Factory to create entities */
+    /**
+     * @var InternalEntityFactory Factory to create entities 
+     */
     protected $entityFactory;
 
-    /** @var XMLReader The XMLReader object that will help read sheet's XML data */
+    /**
+     * @var XMLReader The XMLReader object that will help read sheet's XML data 
+     */
     protected $xmlReader;
 
-    /** @var \Box\Spout\Common\Helper\Escaper\ODS Used to unescape XML data */
+    /**
+     * @var \Box\Spout\Common\Helper\Escaper\ODS Used to unescape XML data 
+     */
     protected $escaper;
 
-    /** @var bool Whether there are still at least a sheet to be read */
+    /**
+     * @var bool Whether there are still at least a sheet to be read 
+     */
     protected $hasFoundSheet;
 
-    /** @var int The index of the sheet being read (zero-based) */
+    /**
+     * @var int The index of the sheet being read (zero-based) 
+     */
     protected $currentSheetIndex;
 
-    /** @var string The name of the sheet that was defined as active */
+    /**
+     * @var string The name of the sheet that was defined as active 
+     */
     protected $activeSheetName;
 
-    /** @var array Associative array [STYLE_NAME] => [IS_SHEET_VISIBLE] */
+    /**
+     * @var array Associative array [STYLE_NAME] => [IS_SHEET_VISIBLE] 
+     */
     protected $sheetsVisibility;
 
     /**
-     * @param string $filePath Path of the file to be read
+     * @param string                                            $filePath       Path of the file to be read
      * @param \Box\Spout\Common\Manager\OptionsManagerInterface $optionsManager
-     * @param \Box\Spout\Common\Helper\Escaper\ODS $escaper Used to unescape XML data
-     * @param SettingsHelper $settingsHelper Helper to get data from "settings.xml"
-     * @param InternalEntityFactory $entityFactory Factory to create entities
+     * @param \Box\Spout\Common\Helper\Escaper\ODS              $escaper        Used to unescape XML data
+     * @param SettingsHelper                                    $settingsHelper Helper to get data from "settings.xml"
+     * @param InternalEntityFactory                             $entityFactory  Factory to create entities
      */
     public function __construct($filePath, $optionsManager, $escaper, $settingsHelper, $entityFactory)
     {
@@ -74,6 +94,7 @@ class SheetIterator implements IteratorInterface
 
     /**
      * Rewind the Iterator to the first element
+     *
      * @see http://php.net/manual/en/iterator.rewind.php
      *
      * @throws \Box\Spout\Common\Exception\IOException If unable to open the XML file containing sheets' data
@@ -112,7 +133,9 @@ class SheetIterator implements IteratorInterface
 
         $tableStyleNodes = $automaticStylesNode->getElementsByTagNameNS(self::XML_STYLE_NAMESPACE, self::XML_NODE_STYLE_TABLE_PROPERTIES);
 
-        /** @var \DOMElement $tableStyleNode */
+        /**
+ * @var \DOMElement $tableStyleNode 
+*/
         foreach ($tableStyleNodes as $tableStyleNode) {
             $isSheetVisible = ($tableStyleNode->getAttribute(self::XML_ATTRIBUTE_TABLE_DISPLAY) !== 'false');
 
@@ -127,6 +150,7 @@ class SheetIterator implements IteratorInterface
 
     /**
      * Checks if current position is valid
+     *
      * @see http://php.net/manual/en/iterator.valid.php
      *
      * @return bool
@@ -138,6 +162,7 @@ class SheetIterator implements IteratorInterface
 
     /**
      * Move forward to next element
+     *
      * @see http://php.net/manual/en/iterator.next.php
      *
      * @return void
@@ -153,6 +178,7 @@ class SheetIterator implements IteratorInterface
 
     /**
      * Return the current element
+     *
      * @see http://php.net/manual/en/iterator.current.php
      *
      * @return \Box\Spout\Reader\ODS\Sheet
@@ -180,9 +206,9 @@ class SheetIterator implements IteratorInterface
     /**
      * Returns whether the current sheet was defined as the active one
      *
-     * @param string $sheetName Name of the current sheet
-     * @param int $sheetIndex Index of the current sheet
-     * @param string|null $activeSheetName Name of the sheet that was defined as active or NULL if none defined
+     * @param  string      $sheetName       Name of the current sheet
+     * @param  int         $sheetIndex      Index of the current sheet
+     * @param  string|null $activeSheetName Name of the sheet that was defined as active or NULL if none defined
      * @return bool Whether the current sheet was defined as the active one
      */
     private function isSheetActive($sheetName, $sheetIndex, $activeSheetName)
@@ -198,7 +224,7 @@ class SheetIterator implements IteratorInterface
     /**
      * Returns whether the current sheet is visible
      *
-     * @param string $sheetStyleName Name of the sheet style
+     * @param  string $sheetStyleName Name of the sheet style
      * @return bool Whether the current sheet is visible
      */
     private function isSheetVisible($sheetStyleName)
@@ -210,6 +236,7 @@ class SheetIterator implements IteratorInterface
 
     /**
      * Return the key of the current element
+     *
      * @see http://php.net/manual/en/iterator.key.php
      *
      * @return int

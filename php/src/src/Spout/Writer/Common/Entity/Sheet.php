@@ -12,25 +12,35 @@ class Sheet
 {
     const DEFAULT_SHEET_NAME_PREFIX = 'Sheet';
 
-    /** @var int Index of the sheet, based on order in the workbook (zero-based) */
+    /**
+     * @var int Index of the sheet, based on order in the workbook (zero-based) 
+     */
     private $index;
 
-    /** @var string ID of the sheet's associated workbook. Used to restrict sheet name uniqueness enforcement to a single workbook */
+    /**
+     * @var string ID of the sheet's associated workbook. Used to restrict sheet name uniqueness enforcement to a single workbook 
+     */
     private $associatedWorkbookId;
 
-    /** @var string Name of the sheet */
+    /**
+     * @var string Name of the sheet 
+     */
     private $name;
 
-    /** @var bool Visibility of the sheet */
+    /**
+     * @var bool Visibility of the sheet 
+     */
     private $isVisible;
 
-    /** @var SheetManager Sheet manager */
+    /**
+     * @var SheetManager Sheet manager 
+     */
     private $sheetManager;
 
     /**
-     * @param int $sheetIndex Index of the sheet, based on order in the workbook (zero-based)
-     * @param string $associatedWorkbookId ID of the sheet's associated workbook
-     * @param SheetManager $sheetManager To manage sheets
+     * @param int          $sheetIndex           Index of the sheet, based on order in the workbook (zero-based)
+     * @param string       $associatedWorkbookId ID of the sheet's associated workbook
+     * @param SheetManager $sheetManager         To manage sheets
      */
     public function __construct($sheetIndex, $associatedWorkbookId, SheetManager $sheetManager)
     {
@@ -75,7 +85,7 @@ class Sheet
      *  - it should not contain these characters: \ / ? * : [ or ]
      *  - it should be unique
      *
-     * @param string $name Name of the sheet
+     * @param  string $name Name of the sheet
      * @throws \Box\Spout\Writer\Exception\InvalidSheetNameException If the sheet's name is invalid.
      * @return Sheet
      */
@@ -99,7 +109,7 @@ class Sheet
     }
 
     /**
-     * @param bool $isVisible Visibility of the sheet
+     * @param  bool $isVisible Visibility of the sheet
      * @return Sheet
      */
     public function setIsVisible($isVisible)

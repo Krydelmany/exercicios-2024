@@ -22,16 +22,20 @@ use Box\Spout\Writer\Exception\WriterNotOpenedException;
  */
 abstract class WriterMultiSheetsAbstract extends WriterAbstract
 {
-    /** @var ManagerFactoryInterface */
+    /**
+     * @var ManagerFactoryInterface 
+     */
     private $managerFactory;
 
-    /** @var WorkbookManagerInterface */
+    /**
+     * @var WorkbookManagerInterface 
+     */
     private $workbookManager;
 
     /**
      * @param OptionsManagerInterface $optionsManager
-     * @param GlobalFunctionsHelper $globalFunctionsHelper
-     * @param HelperFactory $helperFactory
+     * @param GlobalFunctionsHelper   $globalFunctionsHelper
+     * @param HelperFactory           $helperFactory
      * @param ManagerFactoryInterface $managerFactory
      */
     public function __construct(
@@ -48,7 +52,7 @@ abstract class WriterMultiSheetsAbstract extends WriterAbstract
      * Sets whether new sheets should be automatically created when the max rows limit per sheet is reached.
      * This must be set before opening the writer.
      *
-     * @param bool $shouldCreateNewSheetsAutomatically Whether new sheets should be automatically created when the max rows limit per sheet is reached
+     * @param  bool $shouldCreateNewSheetsAutomatically Whether new sheets should be automatically created when the max rows limit per sheet is reached
      * @throws WriterAlreadyOpenedException If the writer was already opened
      * @return WriterMultiSheetsAbstract
      */
@@ -85,7 +89,9 @@ abstract class WriterMultiSheetsAbstract extends WriterAbstract
         $externalSheets = [];
         $worksheets = $this->workbookManager->getWorksheets();
 
-        /** @var Worksheet $worksheet */
+        /**
+ * @var Worksheet $worksheet 
+*/
         foreach ($worksheets as $worksheet) {
             $externalSheets[] = $worksheet->getExternalSheet();
         }
@@ -124,7 +130,7 @@ abstract class WriterMultiSheetsAbstract extends WriterAbstract
      * Sets the given sheet as the current one. New data will be written to this sheet.
      * The writing will resume where it stopped (i.e. data won't be truncated).
      *
-     * @param Sheet $sheet The sheet to set as current
+     * @param  Sheet $sheet The sheet to set as current
      * @throws WriterNotOpenedException If the writer has not been opened yet
      * @throws SheetNotFoundException If the given sheet does not exist in the workbook
      * @return void

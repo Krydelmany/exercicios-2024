@@ -5,6 +5,7 @@ namespace Box\Spout\Reader\Wrapper;
 /**
  * Class XMLReader
  * Wrapper around the built-in XMLReader
+ *
  * @see \XMLReader
  */
 class XMLReader extends \XMLReader
@@ -16,8 +17,8 @@ class XMLReader extends \XMLReader
     /**
      * Opens the XML Reader to read a file located inside a ZIP file.
      *
-     * @param string $zipFilePath Path to the ZIP file
-     * @param string $fileInsideZipPath Relative or absolute path of the file inside the zip
+     * @param  string $zipFilePath       Path to the ZIP file
+     * @param  string $fileInsideZipPath Relative or absolute path of the file inside the zip
      * @return bool TRUE on success or FALSE on failure
      */
     public function openFileInZip($zipFilePath, $fileInsideZipPath)
@@ -39,8 +40,8 @@ class XMLReader extends \XMLReader
      * Returns the real path for the given path components.
      * This is useful to avoid issues on some Windows setup.
      *
-     * @param string $zipFilePath Path to the ZIP file
-     * @param string $fileInsideZipPath Relative or absolute path of the file inside the zip
+     * @param  string $zipFilePath       Path to the ZIP file
+     * @param  string $fileInsideZipPath Relative or absolute path of the file inside the zip
      * @return string The real path URI
      */
     public function getRealPathURIForFileInZip($zipFilePath, $fileInsideZipPath)
@@ -54,7 +55,7 @@ class XMLReader extends \XMLReader
     /**
      * Returns whether the file at the given location exists
      *
-     * @param string $zipStreamURI URI of a zip stream, e.g. "zip://file.zip#path/inside.xml"
+     * @param  string $zipStreamURI URI of a zip stream, e.g. "zip://file.zip#path/inside.xml"
      * @return bool TRUE if the file exists, FALSE otherwise
      */
     protected function fileExistsWithinZip($zipStreamURI)
@@ -78,6 +79,7 @@ class XMLReader extends \XMLReader
 
     /**
      * Move to next node in document
+     *
      * @see \XMLReader::read
      *
      * @throws \Box\Spout\Reader\Exception\XMLProcessingException If an error/warning occurred
@@ -97,7 +99,7 @@ class XMLReader extends \XMLReader
     /**
      * Read until the element with the given name is found, or the end of the file.
      *
-     * @param string $nodeName Name of the node to find
+     * @param  string $nodeName Name of the node to find
      * @throws \Box\Spout\Reader\Exception\XMLProcessingException If an error/warning occurred
      * @return bool TRUE on success or FALSE on failure
      */
@@ -113,9 +115,10 @@ class XMLReader extends \XMLReader
 
     /**
      * Move cursor to next node skipping all subtrees
+     *
      * @see \XMLReader::next
      *
-     * @param string|null $localName The name of the next node to move to
+     * @param  string|null $localName The name of the next node to move to
      * @throws \Box\Spout\Reader\Exception\XMLProcessingException If an error/warning occurred
      * @return bool TRUE on success or FALSE on failure
      */
@@ -131,7 +134,7 @@ class XMLReader extends \XMLReader
     }
 
     /**
-     * @param string $nodeName
+     * @param  string $nodeName
      * @return bool Whether the XML Reader is currently positioned on the starting node with given name
      */
     public function isPositionedOnStartingNode($nodeName)
@@ -140,7 +143,7 @@ class XMLReader extends \XMLReader
     }
 
     /**
-     * @param string $nodeName
+     * @param  string $nodeName
      * @return bool Whether the XML Reader is currently positioned on the ending node with given name
      */
     public function isPositionedOnEndingNode($nodeName)
@@ -149,8 +152,8 @@ class XMLReader extends \XMLReader
     }
 
     /**
-     * @param string $nodeName
-     * @param int $nodeType
+     * @param  string $nodeName
+     * @param  int    $nodeType
      * @return bool Whether the XML Reader is currently positioned on the node with given name and type
      */
     private function isPositionedOnNode($nodeName, $nodeType)

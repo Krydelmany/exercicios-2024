@@ -27,21 +27,29 @@ class FileSystemHelper extends \Box\Spout\Common\Helper\FileSystemHelper impleme
     const MIMETYPE_FILE_NAME = 'mimetype';
     const STYLES_XML_FILE_NAME = 'styles.xml';
 
-    /** @var ZipHelper Helper to perform tasks with Zip archive */
+    /**
+     * @var ZipHelper Helper to perform tasks with Zip archive 
+     */
     private $zipHelper;
 
-    /** @var string Path to the root folder inside the temp folder where the files to create the ODS will be stored */
+    /**
+     * @var string Path to the root folder inside the temp folder where the files to create the ODS will be stored 
+     */
     protected $rootFolder;
 
-    /** @var string Path to the "META-INF" folder inside the root folder */
+    /**
+     * @var string Path to the "META-INF" folder inside the root folder 
+     */
     protected $metaInfFolder;
 
-    /** @var string Path to the temp folder, inside the root folder, where specific sheets content will be written to */
+    /**
+     * @var string Path to the temp folder, inside the root folder, where specific sheets content will be written to 
+     */
     protected $sheetsContentTempFolder;
 
     /**
-     * @param string $baseFolderPath The path of the base folder where all the I/O can occur
-     * @param ZipHelper $zipHelper Helper to perform tasks with Zip archive
+     * @param string    $baseFolderPath The path of the base folder where all the I/O can occur
+     * @param ZipHelper $zipHelper      Helper to perform tasks with Zip archive
      */
     public function __construct($baseFolderPath, $zipHelper)
     {
@@ -189,9 +197,9 @@ EOD;
     /**
      * Creates the "content.xml" file under the root folder
      *
-     * @param WorksheetManager $worksheetManager
-     * @param StyleManager $styleManager
-     * @param Worksheet[] $worksheets
+     * @param  WorksheetManager $worksheetManager
+     * @param  StyleManager     $styleManager
+     * @param  Worksheet[]      $worksheets
      * @return FileSystemHelper
      */
     public function createContentFile($worksheetManager, $styleManager, $worksheets)
@@ -235,8 +243,8 @@ EOD;
      * Depending on which mode the target resource was created with, it will truncate then copy
      * or append the content to the target file.
      *
-     * @param string $sourceFilePath Path of the file whose content will be copied
-     * @param resource $targetResource Target resource that will receive the content
+     * @param  string   $sourceFilePath Path of the file whose content will be copied
+     * @param  resource $targetResource Target resource that will receive the content
      * @return void
      */
     protected function copyFileContentsToTarget($sourceFilePath, $targetResource)
@@ -261,8 +269,8 @@ EOD;
     /**
      * Creates the "styles.xml" file under the root folder
      *
-     * @param StyleManager $styleManager
-     * @param int $numWorksheets Number of created worksheets
+     * @param  StyleManager $styleManager
+     * @param  int          $numWorksheets Number of created worksheets
      * @return FileSystemHelper
      */
     public function createStylesFile($styleManager, $numWorksheets)
@@ -276,7 +284,7 @@ EOD;
     /**
      * Zips the root folder and streams the contents of the zip into the given stream
      *
-     * @param resource $streamPointer Pointer to the stream to copy the zip
+     * @param  resource $streamPointer Pointer to the stream to copy the zip
      * @return void
      */
     public function zipRootFolderAndCopyToStream($streamPointer)

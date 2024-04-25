@@ -19,15 +19,19 @@ use Box\Spout\Writer\ODS\Manager\WorksheetManager;
  */
 class ManagerFactory implements ManagerFactoryInterface
 {
-    /** @var InternalEntityFactory */
+    /**
+     * @var InternalEntityFactory 
+     */
     protected $entityFactory;
 
-    /** @var HelperFactory */
+    /**
+     * @var HelperFactory 
+     */
     protected $helperFactory;
 
     /**
      * @param InternalEntityFactory $entityFactory
-     * @param HelperFactory $helperFactory
+     * @param HelperFactory         $helperFactory
      */
     public function __construct(InternalEntityFactory $entityFactory, HelperFactory $helperFactory)
     {
@@ -36,7 +40,7 @@ class ManagerFactory implements ManagerFactoryInterface
     }
 
     /**
-     * @param OptionsManagerInterface $optionsManager
+     * @param  OptionsManagerInterface $optionsManager
      * @return WorkbookManager
      */
     public function createWorkbookManager(OptionsManagerInterface $optionsManager)
@@ -63,8 +67,8 @@ class ManagerFactory implements ManagerFactoryInterface
     }
 
     /**
-     * @param StyleManager $styleManager
-     * @param StyleMerger $styleMerger
+     * @param  StyleManager $styleManager
+     * @param  StyleMerger  $styleMerger
      * @return WorksheetManager
      */
     private function createWorksheetManager(StyleManager $styleManager, StyleMerger $styleMerger)
@@ -86,7 +90,7 @@ class ManagerFactory implements ManagerFactoryInterface
     }
 
     /**
-     * @param OptionsManagerInterface $optionsManager
+     * @param  OptionsManagerInterface $optionsManager
      * @return StyleManager
      */
     private function createStyleManager(OptionsManagerInterface $optionsManager)
@@ -97,7 +101,7 @@ class ManagerFactory implements ManagerFactoryInterface
     }
 
     /**
-     * @param OptionsManagerInterface $optionsManager
+     * @param  OptionsManagerInterface $optionsManager
      * @return StyleRegistry
      */
     private function createStyleRegistry(OptionsManagerInterface $optionsManager)

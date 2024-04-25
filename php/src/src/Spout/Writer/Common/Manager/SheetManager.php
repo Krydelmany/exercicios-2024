@@ -12,16 +12,24 @@ use Box\Spout\Writer\Exception\InvalidSheetNameException;
  */
 class SheetManager
 {
-    /** Sheet name should not exceed 31 characters */
+    /**
+ * Sheet name should not exceed 31 characters 
+*/
     const MAX_LENGTH_SHEET_NAME = 31;
 
-    /** @var array Invalid characters that cannot be contained in the sheet name */
+    /**
+     * @var array Invalid characters that cannot be contained in the sheet name 
+     */
     private static $INVALID_CHARACTERS_IN_SHEET_NAME = ['\\', '/', '?', '*', ':', '[', ']'];
 
-    /** @var array Associative array [WORKBOOK_ID] => [[SHEET_INDEX] => [SHEET_NAME]] keeping track of sheets' name to enforce uniqueness per workbook */
+    /**
+     * @var array Associative array [WORKBOOK_ID] => [[SHEET_INDEX] => [SHEET_NAME]] keeping track of sheets' name to enforce uniqueness per workbook 
+     */
     private static $SHEETS_NAME_USED = [];
 
-    /** @var StringHelper */
+    /**
+     * @var StringHelper 
+     */
     private $stringHelper;
 
     /**
@@ -36,10 +44,11 @@ class SheetManager
 
     /**
      * Throws an exception if the given sheet's name is not valid.
+     *
      * @see Sheet::setName for validity rules.
      *
-     * @param string $name
-     * @param Sheet $sheet The sheet whose future name is checked
+     * @param  string $name
+     * @param  Sheet  $sheet The sheet whose future name is checked
      * @throws \Box\Spout\Writer\Exception\InvalidSheetNameException If the sheet's name is invalid.
      * @return void
      */
@@ -83,9 +92,10 @@ class SheetManager
 
     /**
      * Returns whether the given name contains at least one invalid character.
+     *
      * @see Sheet::$INVALID_CHARACTERS_IN_SHEET_NAME for the full list.
      *
-     * @param string $name
+     * @param  string $name
      * @return bool TRUE if the name contains invalid characters, FALSE otherwise.
      */
     private function doesContainInvalidCharacters($name)
@@ -96,7 +106,7 @@ class SheetManager
     /**
      * Returns whether the given name starts or ends with a single quote
      *
-     * @param string $name
+     * @param  string $name
      * @return bool TRUE if the name starts or ends with a single quote, FALSE otherwise.
      */
     private function doesStartOrEndWithSingleQuote($name)
@@ -110,8 +120,8 @@ class SheetManager
     /**
      * Returns whether the given name is unique.
      *
-     * @param string $name
-     * @param Sheet $sheet The sheet whose future name is checked
+     * @param  string $name
+     * @param  Sheet  $sheet The sheet whose future name is checked
      * @return bool TRUE if the name is unique, FALSE otherwise.
      */
     private function isNameUnique($name, Sheet $sheet)
@@ -126,7 +136,7 @@ class SheetManager
     }
 
     /**
-     * @param int $workbookId Workbook ID associated to a Sheet
+     * @param  int $workbookId Workbook ID associated to a Sheet
      * @return void
      */
     public function markWorkbookIdAsUsed($workbookId)
@@ -137,7 +147,7 @@ class SheetManager
     }
 
     /**
-     * @param Sheet $sheet
+     * @param  Sheet $sheet
      * @return void
      */
     public function markSheetNameAsUsed(Sheet $sheet)

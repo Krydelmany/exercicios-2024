@@ -10,14 +10,16 @@ use Box\Spout\Common\Entity\Style\Style;
  */
 class StyleRegistry extends \Box\Spout\Writer\Common\Manager\Style\StyleRegistry
 {
-    /** @var array [FONT_NAME] => [] Map whose keys contain all the fonts used */
+    /**
+     * @var array [FONT_NAME] => [] Map whose keys contain all the fonts used 
+     */
     protected $usedFontsSet = [];
 
     /**
      * Registers the given style as a used style.
      * Duplicate styles won't be registered more than once.
      *
-     * @param Style $style The style to be registered
+     * @param  Style $style The style to be registered
      * @return Style The registered style, updated with an internal ID.
      */
     public function registerStyle(Style $style)

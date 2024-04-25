@@ -11,7 +11,9 @@ use Box\Spout\Common\Entity\Style\Style;
  */
 class StyleManager implements StyleManagerInterface
 {
-    /** @var StyleRegistry Registry for all used styles */
+    /**
+     * @var StyleRegistry Registry for all used styles 
+     */
     protected $styleRegistry;
 
     /**
@@ -37,7 +39,7 @@ class StyleManager implements StyleManagerInterface
      * Registers the given style as a used style.
      * Duplicate styles won't be registered more than once.
      *
-     * @param Style $style The style to be registered
+     * @param  Style $style The style to be registered
      * @return Style The registered style, updated with an internal ID.
      */
     public function registerStyle($style)
@@ -49,7 +51,7 @@ class StyleManager implements StyleManagerInterface
      * Apply additional styles if the given row needs it.
      * Typically, set "wrap text" if a cell contains a new line.
      *
-     * @param Cell $cell
+     * @param  Cell $cell
      * @return PossiblyUpdatedStyle The eventually updated style
      */
     public function applyExtraStylesIfNeeded(Cell $cell) : PossiblyUpdatedStyle
@@ -66,7 +68,7 @@ class StyleManager implements StyleManagerInterface
      *        A workaround would be to encode "\n" as "_x000D_" but it does not work
      *        on the Windows version of Excel...
      *
-     * @param Cell $cell The cell the style should be applied to
+     * @param  Cell $cell The cell the style should be applied to
      * @return PossiblyUpdatedStyle The eventually updated style
      */
     protected function applyWrapTextIfCellContainsNewLine(Cell $cell) : PossiblyUpdatedStyle

@@ -12,7 +12,9 @@ use Box\Spout\Writer\XLSX\Helper\BorderHelper;
  */
 class StyleManager extends \Box\Spout\Writer\Common\Manager\Style\StyleManager
 {
-    /** @var StyleRegistry */
+    /**
+     * @var StyleRegistry 
+     */
     protected $styleRegistry;
 
     /**
@@ -22,7 +24,7 @@ class StyleManager extends \Box\Spout\Writer\Common\Manager\Style\StyleManager
      * background color different than the default one or some borders
      * (fonts property don't really matter here).
      *
-     * @param int $styleId
+     * @param  int $styleId
      * @return bool Whether the cell should define a custom style
      */
     public function shouldApplyStyleOnEmptyCell($styleId)
@@ -83,7 +85,9 @@ EOD;
                 continue;
             }
 
-            /** @var Style $style */
+            /**
+ * @var Style $style 
+*/
             $style = $this->styleRegistry->getStyleFromStyleId($styleId);
             $format = $style->getFormat();
             $tags[] = '<numFmt numFmtId="' . $numFmtId . '" formatCode="' . $format . '"/>';
@@ -106,7 +110,9 @@ EOD;
 
         $content = '<fonts count="' . \count($registeredStyles) . '">';
 
-        /** @var Style $style */
+        /**
+ * @var Style $style 
+*/
         foreach ($registeredStyles as $style) {
             $content .= '<font>';
 
@@ -153,7 +159,9 @@ EOD;
 
         // The other fills are actually registered by setting a background color
         foreach ($registeredFills as $styleId) {
-            /** @var Style $style */
+            /**
+ * @var Style $style 
+*/
             $style = $this->styleRegistry->getStyleFromStyleId($styleId);
 
             $backgroundColor = $style->getBackgroundColor();
@@ -186,7 +194,9 @@ EOD;
         $content .= '<border><left/><right/><top/><bottom/></border>';
 
         foreach ($registeredBorders as $styleId) {
-            /** @var \Box\Spout\Common\Entity\Style\Style $style */
+            /**
+ * @var \Box\Spout\Common\Entity\Style\Style $style 
+*/
             $style = $this->styleRegistry->getStyleFromStyleId($styleId);
             $border = $style->getBorder();
             $content .= '<border>';
@@ -196,7 +206,9 @@ EOD;
 
             foreach ($sortOrder as $partName) {
                 if ($border->hasPart($partName)) {
-                    /** @var $part \Box\Spout\Common\Entity\Style\BorderPart */
+                    /**
+ * @var $part \Box\Spout\Common\Entity\Style\BorderPart 
+*/
                     $part = $border->getPart($partName);
                     $content .= BorderHelper::serializeBorderPart($part);
                 }
@@ -274,7 +286,7 @@ EOD;
      * Returns the fill ID associated to the given style ID.
      * For the default style, we don't a fill.
      *
-     * @param int $styleId
+     * @param  int $styleId
      * @return int
      */
     private function getFillIdForStyleId($styleId)
@@ -290,7 +302,7 @@ EOD;
      * Returns the fill ID associated to the given style ID.
      * For the default style, we don't a border.
      *
-     * @param int $styleId
+     * @param  int $styleId
      * @return int
      */
     private function getBorderIdForStyleId($styleId)
@@ -306,7 +318,7 @@ EOD;
      * Returns the format ID associated to the given style ID.
      * For the default style use general format.
      *
-     * @param int $styleId
+     * @param  int $styleId
      * @return int
      */
     private function getFormatIdForStyleId($styleId)

@@ -14,16 +14,24 @@ use Box\Spout\Reader\XLSX\Creator\HelperFactory;
  */
 class FileBasedStrategy implements CachingStrategyInterface
 {
-    /** Value to use to escape the line feed character ("\n") */
+    /**
+ * Value to use to escape the line feed character ("\n") 
+*/
     const ESCAPED_LINE_FEED_CHARACTER = '_x000A_';
 
-    /** @var \Box\Spout\Common\Helper\GlobalFunctionsHelper Helper to work with global functions */
+    /**
+     * @var \Box\Spout\Common\Helper\GlobalFunctionsHelper Helper to work with global functions 
+     */
     protected $globalFunctionsHelper;
 
-    /** @var \Box\Spout\Common\Helper\FileSystemHelper Helper to perform file system operations */
+    /**
+     * @var \Box\Spout\Common\Helper\FileSystemHelper Helper to perform file system operations 
+     */
     protected $fileSystemHelper;
 
-    /** @var string Temporary folder where the temporary files will be created */
+    /**
+     * @var string Temporary folder where the temporary files will be created 
+     */
     protected $tempFolder;
 
     /**
@@ -32,7 +40,9 @@ class FileBasedStrategy implements CachingStrategyInterface
      */
     protected $maxNumStringsPerTempFile;
 
-    /** @var resource Pointer to the last temp file a shared string was written to */
+    /**
+     * @var resource Pointer to the last temp file a shared string was written to 
+     */
     protected $tempFilePointer;
 
     /**
@@ -48,9 +58,9 @@ class FileBasedStrategy implements CachingStrategyInterface
     protected $inMemoryTempFileContents;
 
     /**
-     * @param string $tempFolder Temporary folder where the temporary files to store shared strings will be stored
-     * @param int $maxNumStringsPerTempFile Maximum number of strings that can be stored in one temp file
-     * @param HelperFactory $helperFactory Factory to create helpers
+     * @param string        $tempFolder               Temporary folder where the temporary files to store shared strings will be stored
+     * @param int           $maxNumStringsPerTempFile Maximum number of strings that can be stored in one temp file
+     * @param HelperFactory $helperFactory            Factory to create helpers
      */
     public function __construct($tempFolder, $maxNumStringsPerTempFile, $helperFactory)
     {
@@ -66,8 +76,8 @@ class FileBasedStrategy implements CachingStrategyInterface
     /**
      * Adds the given string to the cache.
      *
-     * @param string $sharedString The string to be added to the cache
-     * @param int $sharedStringIndex Index of the shared string in the sharedStrings.xml file
+     * @param  string $sharedString      The string to be added to the cache
+     * @param  int    $sharedStringIndex Index of the shared string in the sharedStrings.xml file
      * @return void
      */
     public function addStringForIndex($sharedString, $sharedStringIndex)
@@ -91,7 +101,7 @@ class FileBasedStrategy implements CachingStrategyInterface
     /**
      * Returns the path for the temp file that should contain the string for the given index
      *
-     * @param int $sharedStringIndex Index of the shared string in the sharedStrings.xml file
+     * @param  int $sharedStringIndex Index of the shared string in the sharedStrings.xml file
      * @return string The temp file path for the given index
      */
     protected function getSharedStringTempFilePath($sharedStringIndex)
@@ -118,7 +128,7 @@ class FileBasedStrategy implements CachingStrategyInterface
     /**
      * Returns the string located at the given index from the cache.
      *
-     * @param int $sharedStringIndex Index of the shared string in the sharedStrings.xml file
+     * @param  int $sharedStringIndex Index of the shared string in the sharedStrings.xml file
      * @throws \Box\Spout\Reader\Exception\SharedStringNotFoundException If no shared string found for the given index
      * @return string The shared string at the given index
      */
@@ -157,7 +167,7 @@ class FileBasedStrategy implements CachingStrategyInterface
     /**
      * Escapes the line feed characters (\n)
      *
-     * @param string $unescapedString
+     * @param  string $unescapedString
      * @return string
      */
     private function escapeLineFeed($unescapedString)
@@ -168,7 +178,7 @@ class FileBasedStrategy implements CachingStrategyInterface
     /**
      * Unescapes the line feed characters (\n)
      *
-     * @param string $escapedString
+     * @param  string $escapedString
      * @return string
      */
     private function unescapeLineFeed($escapedString)

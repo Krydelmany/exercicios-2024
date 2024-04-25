@@ -24,17 +24,23 @@ EOD;
      */
     const DEFAULT_STRINGS_COUNT_PART = 'count="9999999999999" uniqueCount="9999999999999"';
 
-    /** @var resource Pointer to the sharedStrings.xml file */
+    /**
+     * @var resource Pointer to the sharedStrings.xml file 
+     */
     protected $sharedStringsFilePointer;
 
-    /** @var int Number of shared strings already written */
+    /**
+     * @var int Number of shared strings already written 
+     */
     protected $numSharedStrings = 0;
 
-    /** @var Escaper\XLSX Strings escaper */
+    /**
+     * @var Escaper\XLSX Strings escaper 
+     */
     protected $stringsEscaper;
 
     /**
-     * @param string $xlFolder Path to the "xl" folder
+     * @param string       $xlFolder       Path to the "xl" folder
      * @param Escaper\XLSX $stringsEscaper Strings escaper
      */
     public function __construct($xlFolder, $stringsEscaper)
@@ -68,7 +74,7 @@ EOD;
      * Writes the given string into the sharedStrings.xml file.
      * Starting and ending whitespaces are preserved.
      *
-     * @param string $string
+     * @param  string $string
      * @return int ID of the written shared string
      */
     public function writeString($string)

@@ -14,31 +14,43 @@ class WorkbookRelationshipsManager
 {
     const BASE_PATH = 'xl/';
 
-    /** Path of workbook relationships XML file inside the XLSX file */
+    /**
+ * Path of workbook relationships XML file inside the XLSX file 
+*/
     const WORKBOOK_RELS_XML_FILE_PATH = 'xl/_rels/workbook.xml.rels';
 
-    /** Relationships types - For Transitional and Strict OOXML */
+    /**
+ * Relationships types - For Transitional and Strict OOXML 
+*/
     const RELATIONSHIP_TYPE_SHARED_STRINGS = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings';
     const RELATIONSHIP_TYPE_STYLES = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles';
     const RELATIONSHIP_TYPE_SHARED_STRINGS_STRICT = 'http://purl.oclc.org/ooxml/officeDocument/relationships/sharedStrings';
     const RELATIONSHIP_TYPE_STYLES_STRICT = 'http://purl.oclc.org/ooxml/officeDocument/relationships/styles';
 
-    /** Nodes and attributes used to find relevant information in the workbook relationships XML file */
+    /**
+ * Nodes and attributes used to find relevant information in the workbook relationships XML file 
+*/
     const XML_NODE_RELATIONSHIP = 'Relationship';
     const XML_ATTRIBUTE_TYPE = 'Type';
     const XML_ATTRIBUTE_TARGET = 'Target';
 
-    /** @var string Path of the XLSX file being read */
+    /**
+     * @var string Path of the XLSX file being read 
+     */
     private $filePath;
 
-    /** @var InternalEntityFactory Factory to create entities */
+    /**
+     * @var InternalEntityFactory Factory to create entities 
+     */
     private $entityFactory;
 
-    /** @var array Cache of the already read workbook relationships: [TYPE] => [FILE_NAME] */
+    /**
+     * @var array Cache of the already read workbook relationships: [TYPE] => [FILE_NAME] 
+     */
     private $cachedWorkbookRelationships;
 
     /**
-     * @param string $filePath Path of the XLSX file being read
+     * @param string                $filePath      Path of the XLSX file being read
      * @param InternalEntityFactory $entityFactory Factory to create entities
      */
     public function __construct($filePath, $entityFactory)
@@ -136,7 +148,7 @@ class WorkbookRelationshipsManager
     /**
      * Extracts and store the data of the current workbook relationship.
      *
-     * @param XMLReader $xmlReader
+     * @param  XMLReader $xmlReader
      * @return void
      */
     private function processWorkbookRelationship($xmlReader)

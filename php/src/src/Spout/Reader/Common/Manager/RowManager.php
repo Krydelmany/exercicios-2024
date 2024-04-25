@@ -10,7 +10,9 @@ use Box\Spout\Reader\Common\Creator\InternalEntityFactoryInterface;
  */
 class RowManager
 {
-    /** @var InternalEntityFactoryInterface Factory to create entities */
+    /**
+     * @var InternalEntityFactoryInterface Factory to create entities 
+     */
     private $entityFactory;
 
     /**
@@ -25,7 +27,7 @@ class RowManager
      * Detect whether a row is considered empty.
      * An empty row has all of its cells empty.
      *
-     * @param Row $row
+     * @param  Row $row
      * @return bool
      */
     public function isEmpty(Row $row)
@@ -42,7 +44,7 @@ class RowManager
     /**
      * Fills the missing indexes of a row with empty cells.
      *
-     * @param Row $row
+     * @param  Row $row
      * @return Row
      */
     public function fillMissingIndexesWithEmptyCells(Row $row)

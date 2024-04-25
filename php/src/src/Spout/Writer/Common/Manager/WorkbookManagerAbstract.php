@@ -23,42 +23,60 @@ use Box\Spout\Writer\Exception\WriterException;
  */
 abstract class WorkbookManagerAbstract implements WorkbookManagerInterface
 {
-    /** @var Workbook The workbook to manage */
+    /**
+     * @var Workbook The workbook to manage 
+     */
     protected $workbook;
 
-    /** @var OptionsManagerInterface */
+    /**
+     * @var OptionsManagerInterface 
+     */
     protected $optionsManager;
 
-    /** @var WorksheetManagerInterface */
+    /**
+     * @var WorksheetManagerInterface 
+     */
     protected $worksheetManager;
 
-    /** @var StyleManagerInterface Manages styles */
+    /**
+     * @var StyleManagerInterface Manages styles 
+     */
     protected $styleManager;
 
-    /** @var StyleMerger Helper to merge styles */
+    /**
+     * @var StyleMerger Helper to merge styles 
+     */
     protected $styleMerger;
 
-    /** @var FileSystemWithRootFolderHelperInterface Helper to perform file system operations */
+    /**
+     * @var FileSystemWithRootFolderHelperInterface Helper to perform file system operations 
+     */
     protected $fileSystemHelper;
 
-    /** @var InternalEntityFactory Factory to create entities */
+    /**
+     * @var InternalEntityFactory Factory to create entities 
+     */
     protected $entityFactory;
 
-    /** @var ManagerFactoryInterface Factory to create managers */
+    /**
+     * @var ManagerFactoryInterface Factory to create managers 
+     */
     protected $managerFactory;
 
-    /** @var Worksheet The worksheet where data will be written to */
+    /**
+     * @var Worksheet The worksheet where data will be written to 
+     */
     protected $currentWorksheet;
 
     /**
-     * @param Workbook $workbook
-     * @param OptionsManagerInterface $optionsManager
-     * @param WorksheetManagerInterface $worksheetManager
-     * @param StyleManagerInterface $styleManager
-     * @param StyleMerger $styleMerger
+     * @param Workbook                                $workbook
+     * @param OptionsManagerInterface                 $optionsManager
+     * @param WorksheetManagerInterface               $worksheetManager
+     * @param StyleManagerInterface                   $styleManager
+     * @param StyleMerger                             $styleMerger
      * @param FileSystemWithRootFolderHelperInterface $fileSystemHelper
-     * @param InternalEntityFactory $entityFactory
-     * @param ManagerFactoryInterface $managerFactory
+     * @param InternalEntityFactory                   $entityFactory
+     * @param ManagerFactoryInterface                 $managerFactory
      */
     public function __construct(
         Workbook $workbook,
@@ -86,7 +104,7 @@ abstract class WorkbookManagerAbstract implements WorkbookManagerInterface
     abstract protected function getMaxRowsPerWorksheet();
 
     /**
-     * @param Sheet $sheet
+     * @param  Sheet $sheet
      * @return string The file path where the data for the given sheet will be stored
      */
     abstract protected function getWorksheetFilePath(Sheet $sheet);
@@ -161,7 +179,7 @@ abstract class WorkbookManagerAbstract implements WorkbookManagerInterface
      * Sets the given sheet as the current one. New data will be written to this sheet.
      * The writing will resume where it stopped (i.e. data won't be truncated).
      *
-     * @param Sheet $sheet The "external" sheet to set as current
+     * @param  Sheet $sheet The "external" sheet to set as current
      * @throws SheetNotFoundException If the given sheet does not exist in the workbook
      * @return void
      */
@@ -176,7 +194,7 @@ abstract class WorkbookManagerAbstract implements WorkbookManagerInterface
     }
 
     /**
-     * @param Worksheet $worksheet
+     * @param  Worksheet $worksheet
      * @return void
      */
     private function setCurrentWorksheet($worksheet)
@@ -187,7 +205,7 @@ abstract class WorkbookManagerAbstract implements WorkbookManagerInterface
     /**
      * Returns the worksheet associated to the given external sheet.
      *
-     * @param Sheet $sheet
+     * @param  Sheet $sheet
      * @return Worksheet|null The worksheet associated to the given external sheet or null if not found.
      */
     private function getWorksheetFromExternalSheet($sheet)
@@ -209,7 +227,7 @@ abstract class WorkbookManagerAbstract implements WorkbookManagerInterface
      * If shouldCreateNewSheetsAutomatically option is set to true, it will handle pagination
      * with the creation of new worksheets if one worksheet has reached its maximum capicity.
      *
-     * @param Row $row The row to be added
+     * @param  Row $row The row to be added
      * @throws IOException If trying to create a new sheet and unable to open the sheet for writing
      * @throws WriterException If unable to write data
      * @return void
@@ -247,8 +265,8 @@ abstract class WorkbookManagerAbstract implements WorkbookManagerInterface
     /**
      * Adds a row to the given sheet.
      *
-     * @param Worksheet $worksheet Worksheet to write the row to
-     * @param Row $row The row to be added
+     * @param  Worksheet $worksheet Worksheet to write the row to
+     * @param  Row       $row       The row to be added
      * @throws WriterException If unable to write data
      * @return void
      */
@@ -281,7 +299,7 @@ abstract class WorkbookManagerAbstract implements WorkbookManagerInterface
      * All the necessary files are written to disk and zipped together to create the final file.
      * All the temporary files are then deleted.
      *
-     * @param resource $finalFilePointer Pointer to the spreadsheet that will be created
+     * @param  resource $finalFilePointer Pointer to the spreadsheet that will be created
      * @return void
      */
     public function close($finalFilePointer)
@@ -305,7 +323,7 @@ abstract class WorkbookManagerAbstract implements WorkbookManagerInterface
     /**
      * Writes all the necessary files to disk and zip them together to create the final file.
      *
-     * @param resource $finalFilePointer Pointer to the spreadsheet that will be created
+     * @param  resource $finalFilePointer Pointer to the spreadsheet that will be created
      * @return void
      */
     abstract protected function writeAllFilesToDiskAndZipThem($finalFilePointer);

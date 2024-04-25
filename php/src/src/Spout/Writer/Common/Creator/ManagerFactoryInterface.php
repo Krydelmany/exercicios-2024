@@ -12,7 +12,7 @@ use Box\Spout\Writer\Common\Manager\WorkbookManagerInterface;
 interface ManagerFactoryInterface
 {
     /**
-     * @param OptionsManagerInterface $optionsManager
+     * @param  OptionsManagerInterface $optionsManager
      * @return WorkbookManagerInterface
      */
     public function createWorkbookManager(OptionsManagerInterface $optionsManager);

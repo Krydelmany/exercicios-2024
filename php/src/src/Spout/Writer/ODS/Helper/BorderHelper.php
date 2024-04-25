@@ -45,7 +45,7 @@ class BorderHelper
     ];
 
     /**
-     * @param BorderPart $borderPart
+     * @param  BorderPart $borderPart
      * @return string
      */
     public static function serializeBorderPart(BorderPart $borderPart)

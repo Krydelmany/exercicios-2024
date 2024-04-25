@@ -12,11 +12,14 @@ use Box\Spout\Writer\Common\Entity\Options;
  */
 class OptionsManager extends OptionsManagerAbstract
 {
-    /** @var StyleBuilder Style builder */
+    /**
+     * @var StyleBuilder Style builder 
+     */
     protected $styleBuilder;
 
     /**
      * OptionsManager constructor.
+     *
      * @param StyleBuilder $styleBuilder
      */
     public function __construct(StyleBuilder $styleBuilder)

@@ -14,19 +14,25 @@ use Box\Spout\Writer\WriterAbstract;
  */
 class Writer extends WriterAbstract
 {
-    /** Number of rows to write before flushing */
+    /**
+ * Number of rows to write before flushing 
+*/
     const FLUSH_THRESHOLD = 500;
 
-    /** @var string Content-Type value for the header */
+    /**
+     * @var string Content-Type value for the header 
+     */
     protected static $headerContentType = 'text/csv; charset=UTF-8';
 
-    /** @var int */
+    /**
+     * @var int 
+     */
     protected $lastWrittenRowIndex = 0;
 
     /**
      * Sets the field delimiter for the CSV
      *
-     * @param string $fieldDelimiter Character that delimits fields
+     * @param  string $fieldDelimiter Character that delimits fields
      * @return Writer
      */
     public function setFieldDelimiter($fieldDelimiter)
@@ -39,7 +45,7 @@ class Writer extends WriterAbstract
     /**
      * Sets the field enclosure for the CSV
      *
-     * @param string $fieldEnclosure Character that enclose fields
+     * @param  string $fieldEnclosure Character that enclose fields
      * @return Writer
      */
     public function setFieldEnclosure($fieldEnclosure)
@@ -52,7 +58,7 @@ class Writer extends WriterAbstract
     /**
      * Set if a BOM has to be added to the file
      *
-     * @param bool $shouldAddBOM
+     * @param  bool $shouldAddBOM
      * @return Writer
      */
     public function setShouldAddBOM($shouldAddBOM)
@@ -78,7 +84,7 @@ class Writer extends WriterAbstract
     /**
      * Adds a row to the currently opened writer.
      *
-     * @param Row $row The row containing cells and styles
+     * @param  Row $row The row containing cells and styles
      * @throws IOException If unable to write data
      * @return void
      */

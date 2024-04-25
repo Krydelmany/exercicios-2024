@@ -16,46 +16,64 @@ use Box\Spout\Reader\XLSX\Manager\SharedStringsCaching\CachingStrategyInterface;
  */
 class SharedStringsManager
 {
-    /** Definition of XML nodes names used to parse data */
+    /**
+ * Definition of XML nodes names used to parse data 
+*/
     const XML_NODE_SST = 'sst';
     const XML_NODE_SI = 'si';
     const XML_NODE_R = 'r';
     const XML_NODE_T = 't';
 
-    /** Definition of XML attributes used to parse data */
+    /**
+ * Definition of XML attributes used to parse data 
+*/
     const XML_ATTRIBUTE_COUNT = 'count';
     const XML_ATTRIBUTE_UNIQUE_COUNT = 'uniqueCount';
     const XML_ATTRIBUTE_XML_SPACE = 'xml:space';
     const XML_ATTRIBUTE_VALUE_PRESERVE = 'preserve';
 
-    /** @var string Path of the XLSX file being read */
+    /**
+     * @var string Path of the XLSX file being read 
+     */
     protected $filePath;
 
-    /** @var string Temporary folder where the temporary files to store shared strings will be stored */
+    /**
+     * @var string Temporary folder where the temporary files to store shared strings will be stored 
+     */
     protected $tempFolder;
 
-    /** @var WorkbookRelationshipsManager Helps retrieving workbook relationships */
+    /**
+     * @var WorkbookRelationshipsManager Helps retrieving workbook relationships 
+     */
     protected $workbookRelationshipsManager;
 
-    /** @var InternalEntityFactory Factory to create entities */
+    /**
+     * @var InternalEntityFactory Factory to create entities 
+     */
     protected $entityFactory;
 
-    /** @var HelperFactory Factory to create helpers */
+    /**
+     * @var HelperFactory Factory to create helpers 
+     */
     protected $helperFactory;
 
-    /** @var CachingStrategyFactory Factory to create shared strings caching strategies */
+    /**
+     * @var CachingStrategyFactory Factory to create shared strings caching strategies 
+     */
     protected $cachingStrategyFactory;
 
-    /** @var CachingStrategyInterface The best caching strategy for storing shared strings */
+    /**
+     * @var CachingStrategyInterface The best caching strategy for storing shared strings 
+     */
     protected $cachingStrategy;
 
     /**
-     * @param string $filePath Path of the XLSX file being read
-     * @param string $tempFolder Temporary folder where the temporary files to store shared strings will be stored
+     * @param string                       $filePath                     Path of the XLSX file being read
+     * @param string                       $tempFolder                   Temporary folder where the temporary files to store shared strings will be stored
      * @param WorkbookRelationshipsManager $workbookRelationshipsManager Helps retrieving workbook relationships
-     * @param InternalEntityFactory $entityFactory Factory to create entities
-     * @param HelperFactory $helperFactory Factory to create helpers
-     * @param CachingStrategyFactory $cachingStrategyFactory Factory to create shared strings caching strategies
+     * @param InternalEntityFactory        $entityFactory                Factory to create entities
+     * @param HelperFactory                $helperFactory                Factory to create helpers
+     * @param CachingStrategyFactory       $cachingStrategyFactory       Factory to create shared strings caching strategies
      */
     public function __construct(
         $filePath,
@@ -131,7 +149,7 @@ class SharedStringsManager
     /**
      * Returns the shared strings unique count, as specified in <sst> tag.
      *
-     * @param \Box\Spout\Reader\Wrapper\XMLReader $xmlReader XMLReader instance
+     * @param  \Box\Spout\Reader\Wrapper\XMLReader $xmlReader XMLReader instance
      * @throws \Box\Spout\Common\Exception\IOException If sharedStrings.xml is invalid and can't be read
      * @return int|null Number of unique shared strings in the sharedStrings.xml file
      */
@@ -158,20 +176,20 @@ class SharedStringsManager
     /**
      * Returns the best shared strings caching strategy.
      *
-     * @param int|null $sharedStringsUniqueCount Number of unique shared strings (NULL if unknown)
+     * @param  int|null $sharedStringsUniqueCount Number of unique shared strings (NULL if unknown)
      * @return CachingStrategyInterface
      */
     protected function getBestSharedStringsCachingStrategy($sharedStringsUniqueCount)
     {
         return $this->cachingStrategyFactory
-                ->createBestCachingStrategy($sharedStringsUniqueCount, $this->tempFolder, $this->helperFactory);
+            ->createBestCachingStrategy($sharedStringsUniqueCount, $this->tempFolder, $this->helperFactory);
     }
 
     /**
      * Processes the shared strings item XML node which the given XML reader is positioned on.
      *
-     * @param \Box\Spout\Reader\Wrapper\XMLReader $xmlReader XML Reader positioned on a "<si>" node
-     * @param int $sharedStringIndex Index of the processed shared strings item
+     * @param  \Box\Spout\Reader\Wrapper\XMLReader $xmlReader         XML Reader positioned on a "<si>" node
+     * @param  int                                 $sharedStringIndex Index of the processed shared strings item
      * @return void
      */
     protected function processSharedStringsItem($xmlReader, $sharedStringIndex)
@@ -199,7 +217,7 @@ class SharedStringsManager
      * Some text nodes are part of a node describing the pronunciation for instance.
      * We'll only consider the nodes whose parents are "<si>" or "<r>".
      *
-     * @param \DOMElement $textNode Text node to check
+     * @param  \DOMElement $textNode Text node to check
      * @return bool Whether the given text node's value must be extracted
      */
     protected function shouldExtractTextNodeValue($textNode)
@@ -212,7 +230,7 @@ class SharedStringsManager
     /**
      * If the text node has the attribute 'xml:space="preserve"', then preserve whitespace.
      *
-     * @param \DOMElement $textNode The text node element (<t>) whose whitespace may be preserved
+     * @param  \DOMElement $textNode The text node element (<t>) whose whitespace may be preserved
      * @return bool Whether whitespace should be preserved
      */
     protected function shouldPreserveWhitespace($textNode)
@@ -225,7 +243,7 @@ class SharedStringsManager
     /**
      * Returns the shared string at the given index, using the previously chosen caching strategy.
      *
-     * @param int $sharedStringIndex Index of the shared string in the sharedStrings.xml file
+     * @param  int $sharedStringIndex Index of the shared string in the sharedStrings.xml file
      * @throws \Box\Spout\Reader\Exception\SharedStringNotFoundException If no shared string found for the given index
      * @return string The shared string at the given index
      */

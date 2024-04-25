@@ -33,9 +33,10 @@ interface WriterInterface
     /**
      * Sets the default styles for all rows added with "addRow".
      * Overriding the default style instead of using "addRowWithStyle" improves performance by 20%.
+     *
      * @see https://github.com/box/spout/issues/272
      *
-     * @param Style $defaultStyle
+     * @param  Style $defaultStyle
      * @return WriterInterface
      */
     public function setDefaultRowStyle(Style $defaultStyle);
@@ -43,7 +44,7 @@ interface WriterInterface
     /**
      * Appends a row to the end of the stream.
      *
-     * @param Row $row The row to be appended to the stream
+     * @param  Row $row The row to be appended to the stream
      * @throws \Box\Spout\Writer\Exception\WriterNotOpenedException If the writer has not been opened yet
      * @throws \Box\Spout\Common\Exception\IOException If unable to write data
      * @return WriterInterface
@@ -53,7 +54,7 @@ interface WriterInterface
     /**
      * Appends the rows to the end of the stream.
      *
-     * @param Row[] $rows The rows to be appended to the stream
+     * @param  Row[] $rows The rows to be appended to the stream
      * @throws \Box\Spout\Common\Exception\InvalidArgumentException If the input param is not valid
      * @throws \Box\Spout\Writer\Exception\WriterNotOpenedException If the writer has not been opened yet
      * @throws \Box\Spout\Common\Exception\IOException If unable to write data

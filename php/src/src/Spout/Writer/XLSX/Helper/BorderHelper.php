@@ -36,7 +36,7 @@ class BorderHelper
     ];
 
     /**
-     * @param BorderPart $borderPart
+     * @param  BorderPart $borderPart
      * @return string
      */
     public static function serializeBorderPart(BorderPart $borderPart)
@@ -58,7 +58,7 @@ class BorderHelper
     /**
      * Get the style definition from the style map
      *
-     * @param BorderPart $borderPart
+     * @param  BorderPart $borderPart
      * @return string
      */
     protected static function getBorderStyle(BorderPart $borderPart)

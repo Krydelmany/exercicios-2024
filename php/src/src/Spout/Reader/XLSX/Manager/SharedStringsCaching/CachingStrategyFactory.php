@@ -54,9 +54,9 @@ class CachingStrategyFactory
      * Returns the best caching strategy, given the number of unique shared strings
      * and the amount of memory available.
      *
-     * @param int|null $sharedStringsUniqueCount Number of unique shared strings (NULL if unknown)
-     * @param string $tempFolder Temporary folder where the temporary files to store shared strings will be stored
-     * @param HelperFactory $helperFactory Factory to create helpers
+     * @param  int|null      $sharedStringsUniqueCount Number of unique shared strings (NULL if unknown)
+     * @param  string        $tempFolder               Temporary folder where the temporary files to store shared strings will be stored
+     * @param  HelperFactory $helperFactory            Factory to create helpers
      * @return CachingStrategyInterface The best caching strategy
      */
     public function createBestCachingStrategy($sharedStringsUniqueCount, $tempFolder, $helperFactory)
@@ -72,7 +72,7 @@ class CachingStrategyFactory
      * Returns whether it is safe to use in-memory caching, given the number of unique shared strings
      * and the amount of memory available.
      *
-     * @param int|null $sharedStringsUniqueCount Number of unique shared strings (NULL if unknown)
+     * @param  int|null $sharedStringsUniqueCount Number of unique shared strings (NULL if unknown)
      * @return bool
      */
     protected function isInMemoryStrategyUsageSafe($sharedStringsUniqueCount)
@@ -115,11 +115,16 @@ class CachingStrategyFactory
             $unit = $matches[2];
 
             switch ($unit) {
-                case 'b': return ($amount / 1024);
-                case 'k': return $amount;
-                case 'm': return ($amount * 1024);
-                case 'g': return ($amount * 1024 * 1024);
-                case 't': return ($amount * 1024 * 1024 * 1024);
+            case 'b': 
+                return ($amount / 1024);
+            case 'k': 
+                return $amount;
+            case 'm': 
+                return ($amount * 1024);
+            case 'g': 
+                return ($amount * 1024 * 1024);
+            case 't': 
+                return ($amount * 1024 * 1024 * 1024);
             }
         }
 

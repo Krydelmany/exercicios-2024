@@ -10,30 +10,42 @@ use Box\Spout\Reader\SheetInterface;
  */
 class Sheet implements SheetInterface
 {
-    /** @var \Box\Spout\Reader\ODS\RowIterator To iterate over sheet's rows */
+    /**
+     * @var \Box\Spout\Reader\ODS\RowIterator To iterate over sheet's rows 
+     */
     protected $rowIterator;
 
-    /** @var int ID of the sheet */
+    /**
+     * @var int ID of the sheet 
+     */
     protected $id;
 
-    /** @var int Index of the sheet, based on order in the workbook (zero-based) */
+    /**
+     * @var int Index of the sheet, based on order in the workbook (zero-based) 
+     */
     protected $index;
 
-    /** @var string Name of the sheet */
+    /**
+     * @var string Name of the sheet 
+     */
     protected $name;
 
-    /** @var bool Whether the sheet was the active one */
+    /**
+     * @var bool Whether the sheet was the active one 
+     */
     protected $isActive;
 
-    /** @var bool Whether the sheet is visible */
+    /**
+     * @var bool Whether the sheet is visible 
+     */
     protected $isVisible;
 
     /**
-     * @param RowIterator $rowIterator The corresponding row iterator
-     * @param int $sheetIndex Index of the sheet, based on order in the workbook (zero-based)
-     * @param string $sheetName Name of the sheet
-     * @param bool $isSheetActive Whether the sheet was defined as active
-     * @param bool $isSheetVisible Whether the sheet is visible
+     * @param RowIterator $rowIterator    The corresponding row iterator
+     * @param int         $sheetIndex     Index of the sheet, based on order in the workbook (zero-based)
+     * @param string      $sheetName      Name of the sheet
+     * @param bool        $isSheetActive  Whether the sheet was defined as active
+     * @param bool        $isSheetVisible Whether the sheet is visible
      */
     public function __construct($rowIterator, $sheetIndex, $sheetName, $isSheetActive, $isSheetVisible)
     {

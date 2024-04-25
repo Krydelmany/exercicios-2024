@@ -28,6 +28,7 @@ class WorksheetManager implements WorksheetManagerInterface
 {
     /**
      * Maximum number of characters a cell can contain
+     *
      * @see https://support.office.com/en-us/article/Excel-specifications-and-limits-16c69c74-3d6a-4aaf-ba35-e6eb276e8eaa [Excel 2007]
      * @see https://support.office.com/en-us/article/Excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3 [Excel 2010]
      * @see https://support.office.com/en-us/article/Excel-specifications-and-limits-ca36e2dc-1f09-4620-b726-67c00b05040f [Excel 2013/2016]
@@ -39,41 +40,57 @@ class WorksheetManager implements WorksheetManagerInterface
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
 EOD;
 
-    /** @var bool Whether inline or shared strings should be used */
+    /**
+     * @var bool Whether inline or shared strings should be used 
+     */
     protected $shouldUseInlineStrings;
 
-    /** @var RowManager Manages rows */
+    /**
+     * @var RowManager Manages rows 
+     */
     private $rowManager;
 
-    /** @var StyleManager Manages styles */
+    /**
+     * @var StyleManager Manages styles 
+     */
     private $styleManager;
 
-    /** @var StyleMerger Helper to merge styles together */
+    /**
+     * @var StyleMerger Helper to merge styles together 
+     */
     private $styleMerger;
 
-    /** @var SharedStringsManager Helper to write shared strings */
+    /**
+     * @var SharedStringsManager Helper to write shared strings 
+     */
     private $sharedStringsManager;
 
-    /** @var XLSXEscaper Strings escaper */
+    /**
+     * @var XLSXEscaper Strings escaper 
+     */
     private $stringsEscaper;
 
-    /** @var StringHelper String helper */
+    /**
+     * @var StringHelper String helper 
+     */
     private $stringHelper;
 
-    /** @var InternalEntityFactory Factory to create entities */
+    /**
+     * @var InternalEntityFactory Factory to create entities 
+     */
     private $entityFactory;
 
     /**
      * WorksheetManager constructor.
      *
      * @param OptionsManagerInterface $optionsManager
-     * @param RowManager $rowManager
-     * @param StyleManager $styleManager
-     * @param StyleMerger $styleMerger
-     * @param SharedStringsManager $sharedStringsManager
-     * @param XLSXEscaper $stringsEscaper
-     * @param StringHelper $stringHelper
-     * @param InternalEntityFactory $entityFactory
+     * @param RowManager              $rowManager
+     * @param StyleManager            $styleManager
+     * @param StyleMerger             $styleMerger
+     * @param SharedStringsManager    $sharedStringsManager
+     * @param XLSXEscaper             $stringsEscaper
+     * @param StringHelper            $stringHelper
+     * @param InternalEntityFactory   $entityFactory
      */
     public function __construct(
         OptionsManagerInterface $optionsManager,
@@ -120,7 +137,7 @@ EOD;
     /**
      * Checks if the sheet has been sucessfully created. Throws an exception if not.
      *
-     * @param bool|resource $sheetFilePointer Pointer to the sheet data file or FALSE if unable to open the file
+     * @param  bool|resource $sheetFilePointer Pointer to the sheet data file or FALSE if unable to open the file
      * @throws IOException If the sheet data file cannot be opened for writing
      * @return void
      */
@@ -146,8 +163,8 @@ EOD;
     /**
      * Adds non empty row to the worksheet.
      *
-     * @param Worksheet $worksheet The worksheet to add the row to
-     * @param Row $row The row to be written
+     * @param  Worksheet $worksheet The worksheet to add the row to
+     * @param  Row       $row       The row to be written
      * @throws IOException If the data cannot be written
      * @throws InvalidArgumentException If a cell value's type is not supported
      * @return void
@@ -262,7 +279,7 @@ EOD;
     /**
      * Returns the XML fragment for a cell containing a non empty string
      *
-     * @param string $cellValue The cell value
+     * @param  string $cellValue The cell value
      * @throws InvalidArgumentException If the string exceeds the maximum number of characters allowed per cell
      * @return string The XML fragment representing the cell
      */

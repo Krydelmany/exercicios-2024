@@ -13,20 +13,26 @@ use Box\Spout\Reader\ReaderAbstract;
  */
 class Reader extends ReaderAbstract
 {
-    /** @var resource Pointer to the file to be written */
+    /**
+     * @var resource Pointer to the file to be written 
+     */
     protected $filePointer;
 
-    /** @var SheetIterator To iterator over the CSV unique "sheet" */
+    /**
+     * @var SheetIterator To iterator over the CSV unique "sheet" 
+     */
     protected $sheetIterator;
 
-    /** @var string Original value for the "auto_detect_line_endings" INI value */
+    /**
+     * @var string Original value for the "auto_detect_line_endings" INI value 
+     */
     protected $originalAutoDetectLineEndings;
 
     /**
      * Sets the field delimiter for the CSV.
      * Needs to be called before opening the reader.
      *
-     * @param string $fieldDelimiter Character that delimits fields
+     * @param  string $fieldDelimiter Character that delimits fields
      * @return Reader
      */
     public function setFieldDelimiter($fieldDelimiter)
@@ -40,7 +46,7 @@ class Reader extends ReaderAbstract
      * Sets the field enclosure for the CSV.
      * Needs to be called before opening the reader.
      *
-     * @param string $fieldEnclosure Character that enclose fields
+     * @param  string $fieldEnclosure Character that enclose fields
      * @return Reader
      */
     public function setFieldEnclosure($fieldEnclosure)
@@ -54,7 +60,7 @@ class Reader extends ReaderAbstract
      * Sets the encoding of the CSV file to be read.
      * Needs to be called before opening the reader.
      *
-     * @param string $encoding Encoding of the CSV file to be read
+     * @param  string $encoding Encoding of the CSV file to be read
      * @return Reader
      */
     public function setEncoding($encoding)
@@ -92,7 +98,9 @@ class Reader extends ReaderAbstract
             throw new IOException("Could not open file $filePath for reading.");
         }
 
-        /** @var InternalEntityFactory $entityFactory */
+        /**
+ * @var InternalEntityFactory $entityFactory 
+*/
         $entityFactory = $this->entityFactory;
 
         $this->sheetIterator = $entityFactory->createSheetIterator(

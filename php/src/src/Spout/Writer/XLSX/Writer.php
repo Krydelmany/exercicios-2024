@@ -11,14 +11,16 @@ use Box\Spout\Writer\WriterMultiSheetsAbstract;
  */
 class Writer extends WriterMultiSheetsAbstract
 {
-    /** @var string Content-Type value for the header */
+    /**
+     * @var string Content-Type value for the header 
+     */
     protected static $headerContentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
 
     /**
      * Sets a custom temporary folder for creating intermediate files/folders.
      * This must be set before opening the writer.
      *
-     * @param string $tempFolder Temporary folder where the files to create the XLSX will be stored
+     * @param  string $tempFolder Temporary folder where the files to create the XLSX will be stored
      * @throws \Box\Spout\Writer\Exception\WriterAlreadyOpenedException If the writer was already opened
      * @return Writer
      */
@@ -35,7 +37,7 @@ class Writer extends WriterMultiSheetsAbstract
      * Use inline string to be more memory efficient. If set to false, it will use shared strings.
      * This must be set before opening the writer.
      *
-     * @param bool $shouldUseInlineStrings Whether inline or shared strings should be used
+     * @param  bool $shouldUseInlineStrings Whether inline or shared strings should be used
      * @throws \Box\Spout\Writer\Exception\WriterAlreadyOpenedException If the writer was already opened
      * @return Writer
      */

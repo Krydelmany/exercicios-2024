@@ -19,15 +19,19 @@ use Box\Spout\Reader\XLSX\SheetIterator;
  */
 class InternalEntityFactory implements InternalEntityFactoryInterface
 {
-    /** @var HelperFactory */
+    /**
+     * @var HelperFactory 
+     */
     private $helperFactory;
 
-    /** @var ManagerFactory */
+    /**
+     * @var ManagerFactory 
+     */
     private $managerFactory;
 
     /**
      * @param ManagerFactory $managerFactory
-     * @param HelperFactory $helperFactory
+     * @param HelperFactory  $helperFactory
      */
     public function __construct(ManagerFactory $managerFactory, HelperFactory $helperFactory)
     {
@@ -36,9 +40,9 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param string $filePath Path of the file to be read
-     * @param \Box\Spout\Common\Manager\OptionsManagerInterface $optionsManager Reader's options manager
-     * @param SharedStringsManager $sharedStringsManager Manages shared strings
+     * @param  string                                            $filePath             Path of the file to be read
+     * @param  \Box\Spout\Common\Manager\OptionsManagerInterface $optionsManager       Reader's options manager
+     * @param  SharedStringsManager                              $sharedStringsManager Manages shared strings
      * @return SheetIterator
      */
     public function createSheetIterator($filePath, $optionsManager, $sharedStringsManager)
@@ -54,14 +58,14 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param string $filePath Path of the XLSX file being read
-     * @param string $sheetDataXMLFilePath Path of the sheet data XML file as in [Content_Types].xml
-     * @param int $sheetIndex Index of the sheet, based on order in the workbook (zero-based)
-     * @param string $sheetName Name of the sheet
-     * @param bool $isSheetActive Whether the sheet was defined as active
-     * @param bool $isSheetVisible Whether the sheet is visible
-     * @param \Box\Spout\Common\Manager\OptionsManagerInterface $optionsManager Reader's options manager
-     * @param SharedStringsManager $sharedStringsManager Manages shared strings
+     * @param  string                                            $filePath             Path of the XLSX file being read
+     * @param  string                                            $sheetDataXMLFilePath Path of the sheet data XML file as in [Content_Types].xml
+     * @param  int                                               $sheetIndex           Index of the sheet, based on order in the workbook (zero-based)
+     * @param  string                                            $sheetName            Name of the sheet
+     * @param  bool                                              $isSheetActive        Whether the sheet was defined as active
+     * @param  bool                                              $isSheetVisible       Whether the sheet is visible
+     * @param  \Box\Spout\Common\Manager\OptionsManagerInterface $optionsManager       Reader's options manager
+     * @param  SharedStringsManager                              $sharedStringsManager Manages shared strings
      * @return Sheet
      */
     public function createSheet(
@@ -80,10 +84,10 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param string $filePath Path of the XLSX file being read
-     * @param string $sheetDataXMLFilePath Path of the sheet data XML file as in [Content_Types].xml
-     * @param \Box\Spout\Common\Manager\OptionsManagerInterface $optionsManager Reader's options manager
-     * @param SharedStringsManager $sharedStringsManager Manages shared strings
+     * @param  string                                            $filePath             Path of the XLSX file being read
+     * @param  string                                            $sheetDataXMLFilePath Path of the sheet data XML file as in [Content_Types].xml
+     * @param  \Box\Spout\Common\Manager\OptionsManagerInterface $optionsManager       Reader's options manager
+     * @param  SharedStringsManager                              $sharedStringsManager Manages shared strings
      * @return RowIterator
      */
     private function createRowIterator($filePath, $sheetDataXMLFilePath, $optionsManager, $sharedStringsManager)
@@ -118,7 +122,7 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param Cell[] $cells
+     * @param  Cell[] $cells
      * @return Row
      */
     public function createRow(array $cells = [])
@@ -127,7 +131,7 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param mixed $cellValue
+     * @param  mixed $cellValue
      * @return Cell
      */
     public function createCell($cellValue)
@@ -152,7 +156,7 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param $xmlReader
+     * @param  $xmlReader
      * @return XMLProcessor
      */
     public function createXMLProcessor($xmlReader)

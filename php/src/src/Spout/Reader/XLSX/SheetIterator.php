@@ -12,14 +12,18 @@ use Box\Spout\Reader\XLSX\Manager\SheetManager;
  */
 class SheetIterator implements IteratorInterface
 {
-    /** @var \Box\Spout\Reader\XLSX\Sheet[] The list of sheet present in the file */
+    /**
+     * @var \Box\Spout\Reader\XLSX\Sheet[] The list of sheet present in the file 
+     */
     protected $sheets;
 
-    /** @var int The index of the sheet being read (zero-based) */
+    /**
+     * @var int The index of the sheet being read (zero-based) 
+     */
     protected $currentSheetIndex;
 
     /**
-     * @param SheetManager $sheetManager Manages sheets
+     * @param  SheetManager $sheetManager Manages sheets
      * @throws \Box\Spout\Reader\Exception\NoSheetsFoundException If there are no sheets in the file
      */
     public function __construct($sheetManager)
@@ -34,6 +38,7 @@ class SheetIterator implements IteratorInterface
 
     /**
      * Rewind the Iterator to the first element
+     *
      * @see http://php.net/manual/en/iterator.rewind.php
      *
      * @return void
@@ -45,6 +50,7 @@ class SheetIterator implements IteratorInterface
 
     /**
      * Checks if current position is valid
+     *
      * @see http://php.net/manual/en/iterator.valid.php
      *
      * @return bool
@@ -56,6 +62,7 @@ class SheetIterator implements IteratorInterface
 
     /**
      * Move forward to next element
+     *
      * @see http://php.net/manual/en/iterator.next.php
      *
      * @return void
@@ -73,6 +80,7 @@ class SheetIterator implements IteratorInterface
 
     /**
      * Return the current element
+     *
      * @see http://php.net/manual/en/iterator.current.php
      *
      * @return \Box\Spout\Reader\XLSX\Sheet
@@ -84,6 +92,7 @@ class SheetIterator implements IteratorInterface
 
     /**
      * Return the key of the current element
+     *
      * @see http://php.net/manual/en/iterator.key.php
      *
      * @return int

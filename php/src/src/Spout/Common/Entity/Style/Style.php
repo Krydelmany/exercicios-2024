@@ -8,86 +8,146 @@ namespace Box\Spout\Common\Entity\Style;
  */
 class Style
 {
-    /** Default values */
+    /**
+ * Default values 
+*/
     const DEFAULT_FONT_SIZE = 11;
     const DEFAULT_FONT_COLOR = Color::BLACK;
     const DEFAULT_FONT_NAME = 'Arial';
 
-    /** @var int|null Style ID */
+    /**
+     * @var int|null Style ID 
+     */
     private $id;
 
-    /** @var bool Whether the font should be bold */
+    /**
+     * @var bool Whether the font should be bold 
+     */
     private $fontBold = false;
-    /** @var bool Whether the bold property was set */
+    /**
+     * @var bool Whether the bold property was set 
+     */
     private $hasSetFontBold = false;
 
-    /** @var bool Whether the font should be italic */
+    /**
+     * @var bool Whether the font should be italic 
+     */
     private $fontItalic = false;
-    /** @var bool Whether the italic property was set */
+    /**
+     * @var bool Whether the italic property was set 
+     */
     private $hasSetFontItalic = false;
 
-    /** @var bool Whether the font should be underlined */
+    /**
+     * @var bool Whether the font should be underlined 
+     */
     private $fontUnderline = false;
-    /** @var bool Whether the underline property was set */
+    /**
+     * @var bool Whether the underline property was set 
+     */
     private $hasSetFontUnderline = false;
 
-    /** @var bool Whether the font should be struck through */
+    /**
+     * @var bool Whether the font should be struck through 
+     */
     private $fontStrikethrough = false;
-    /** @var bool Whether the strikethrough property was set */
+    /**
+     * @var bool Whether the strikethrough property was set 
+     */
     private $hasSetFontStrikethrough = false;
 
-    /** @var int Font size */
+    /**
+     * @var int Font size 
+     */
     private $fontSize = self::DEFAULT_FONT_SIZE;
-    /** @var bool Whether the font size property was set */
+    /**
+     * @var bool Whether the font size property was set 
+     */
     private $hasSetFontSize = false;
 
-    /** @var string Font color */
+    /**
+     * @var string Font color 
+     */
     private $fontColor = self::DEFAULT_FONT_COLOR;
-    /** @var bool Whether the font color property was set */
+    /**
+     * @var bool Whether the font color property was set 
+     */
     private $hasSetFontColor = false;
 
-    /** @var string Font name */
+    /**
+     * @var string Font name 
+     */
     private $fontName = self::DEFAULT_FONT_NAME;
-    /** @var bool Whether the font name property was set */
+    /**
+     * @var bool Whether the font name property was set 
+     */
     private $hasSetFontName = false;
 
-    /** @var bool Whether specific font properties should be applied */
+    /**
+     * @var bool Whether specific font properties should be applied 
+     */
     private $shouldApplyFont = false;
 
-    /** @var bool Whether specific cell alignment should be applied */
+    /**
+     * @var bool Whether specific cell alignment should be applied 
+     */
     private $shouldApplyCellAlignment = false;
-    /** @var string Cell alignment */
+    /**
+     * @var string Cell alignment 
+     */
     private $cellAlignment;
-    /** @var bool Whether the cell alignment property was set */
+    /**
+     * @var bool Whether the cell alignment property was set 
+     */
     private $hasSetCellAlignment = false;
 
-    /** @var bool Whether the text should wrap in the cell (useful for long or multi-lines text) */
+    /**
+     * @var bool Whether the text should wrap in the cell (useful for long or multi-lines text) 
+     */
     private $shouldWrapText = false;
-    /** @var bool Whether the wrap text property was set */
+    /**
+     * @var bool Whether the wrap text property was set 
+     */
     private $hasSetWrapText = false;
 
-    /** @var Border */
+    /**
+     * @var Border 
+     */
     private $border;
 
-    /** @var bool Whether border properties should be applied */
+    /**
+     * @var bool Whether border properties should be applied 
+     */
     private $shouldApplyBorder = false;
 
-    /** @var string Background color */
+    /**
+     * @var string Background color 
+     */
     private $backgroundColor;
 
-    /** @var bool */
+    /**
+     * @var bool 
+     */
     private $hasSetBackgroundColor = false;
 
-    /** @var string Format */
+    /**
+     * @var string Format 
+     */
     private $format;
 
-    /** @var bool */
+    /**
+     * @var bool 
+     */
     private $hasSetFormat = false;
 
-    /** @var bool */
+    /**
+     * @var bool 
+     */
     private $isRegistered = false;
 
-    /** @var bool */
+    /**
+     * @var bool 
+     */
     private $isEmpty = true;
 
     /**
@@ -99,7 +159,7 @@ class Style
     }
 
     /**
-     * @param int $id
+     * @param  int $id
      * @return Style
      */
     public function setId($id)
@@ -118,7 +178,7 @@ class Style
     }
 
     /**
-     * @param Border $border
+     * @param  Border $border
      * @return Style
      */
     public function setBorder(Border $border)
@@ -263,7 +323,7 @@ class Style
     }
 
     /**
-     * @param int $fontSize Font size, in pixels
+     * @param  int $fontSize Font size, in pixels
      * @return Style
      */
     public function setFontSize($fontSize)
@@ -295,7 +355,7 @@ class Style
     /**
      * Sets the font color.
      *
-     * @param string $fontColor ARGB color (@see Color)
+     * @param  string $fontColor ARGB color (@see Color)
      * @return Style
      */
     public function setFontColor($fontColor)
@@ -325,7 +385,7 @@ class Style
     }
 
     /**
-     * @param string $fontName Name of the font to use
+     * @param  string $fontName Name of the font to use
      * @return Style
      */
     public function setFontName($fontName)
@@ -394,7 +454,7 @@ class Style
     }
 
     /**
-     * @param bool $shouldWrap Should the text be wrapped
+     * @param  bool $shouldWrap Should the text be wrapped
      * @return Style
      */
     public function setShouldWrapText($shouldWrap = true)
@@ -424,7 +484,8 @@ class Style
 
     /**
      * Sets the background color
-     * @param string $color ARGB color (@see Color)
+     *
+     * @param  string $color ARGB color (@see Color)
      * @return Style
      */
     public function setBackgroundColor($color)
@@ -454,7 +515,8 @@ class Style
 
     /**
      * Sets format
-     * @param string $format
+     *
+     * @param  string $format
      * @return Style
      */
     public function setFormat($format)

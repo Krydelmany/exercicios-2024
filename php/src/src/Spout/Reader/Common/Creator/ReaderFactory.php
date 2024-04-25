@@ -31,7 +31,7 @@ class ReaderFactory
     /**
      * Creates a reader by file extension
      *
-     * @param string $path The path to the spreadsheet file. Supported extensions are .csv,.ods and .xlsx
+     * @param  string $path The path to the spreadsheet file. Supported extensions are .csv,.ods and .xlsx
      * @throws \Box\Spout\Common\Exception\UnsupportedTypeException
      * @return ReaderInterface
      */
@@ -52,11 +52,14 @@ class ReaderFactory
     public static function createFromType($readerType)
     {
         switch ($readerType) {
-            case Type::CSV: return self::createCSVReader();
-            case Type::XLSX: return self::createXLSXReader();
-            case Type::ODS: return self::createODSReader();
-            default:
-                throw new UnsupportedTypeException('No readers supporting the given type: ' . $readerType);
+        case Type::CSV: 
+            return self::createCSVReader();
+        case Type::XLSX: 
+            return self::createXLSXReader();
+        case Type::ODS: 
+            return self::createODSReader();
+        default:
+            throw new UnsupportedTypeException('No readers supporting the given type: ' . $readerType);
         }
     }
 

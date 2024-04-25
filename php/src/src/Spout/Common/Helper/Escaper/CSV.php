@@ -13,7 +13,7 @@ class CSV implements EscaperInterface
      *
      * @codeCoverageIgnore
      *
-     * @param string $string The string to escape
+     * @param  string $string The string to escape
      * @return string The escaped string
      */
     public function escape($string)
@@ -26,7 +26,7 @@ class CSV implements EscaperInterface
      *
      * @codeCoverageIgnore
      *
-     * @param string $string The string to unescape
+     * @param  string $string The string to unescape
      * @return string The unescaped string
      */
     public function unescape($string)

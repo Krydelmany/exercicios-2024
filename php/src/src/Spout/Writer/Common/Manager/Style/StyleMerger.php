@@ -18,8 +18,8 @@ class StyleMerger
      *
      * @NOTE: This function returns a new style.
      *
-     * @param Style $style
-     * @param Style $baseStyle
+     * @param  Style $style
+     * @param  Style $baseStyle
      * @return Style New style corresponding to the merge of the 2 styles
      */
     public function merge(Style $style, Style $baseStyle)
@@ -34,9 +34,9 @@ class StyleMerger
     }
 
     /**
-     * @param Style $styleToUpdate (passed as reference)
-     * @param Style $style
-     * @param Style $baseStyle
+     * @param  Style $styleToUpdate (passed as reference)
+     * @param  Style $style
+     * @param  Style $baseStyle
      * @return void
      */
     private function mergeFontStyles(Style $styleToUpdate, Style $style, Style $baseStyle)
@@ -56,9 +56,9 @@ class StyleMerger
     }
 
     /**
-     * @param Style $styleToUpdate Style to update (passed as reference)
-     * @param Style $style
-     * @param Style $baseStyle
+     * @param  Style $styleToUpdate Style to update (passed as reference)
+     * @param  Style $style
+     * @param  Style $baseStyle
      * @return void
      */
     private function mergeOtherFontProperties(Style $styleToUpdate, Style $style, Style $baseStyle)
@@ -75,9 +75,9 @@ class StyleMerger
     }
 
     /**
-     * @param Style $styleToUpdate Style to update (passed as reference)
-     * @param Style $style
-     * @param Style $baseStyle
+     * @param  Style $styleToUpdate Style to update (passed as reference)
+     * @param  Style $style
+     * @param  Style $baseStyle
      * @return void
      */
     private function mergeCellProperties(Style $styleToUpdate, Style $style, Style $baseStyle)

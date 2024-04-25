@@ -13,7 +13,9 @@ use Box\Spout\Common\Exception\InvalidArgumentException;
  */
 class StyleBuilder
 {
-    /** @var Style Style to be created */
+    /**
+     * @var Style Style to be created 
+     */
     protected $style;
 
     /**
@@ -75,7 +77,7 @@ class StyleBuilder
     /**
      * Sets the font size.
      *
-     * @param int $fontSize Font size, in pixels
+     * @param  int $fontSize Font size, in pixels
      * @return StyleBuilder
      */
     public function setFontSize($fontSize)
@@ -88,7 +90,7 @@ class StyleBuilder
     /**
      * Sets the font color.
      *
-     * @param string $fontColor ARGB color (@see Color)
+     * @param  string $fontColor ARGB color (@see Color)
      * @return StyleBuilder
      */
     public function setFontColor($fontColor)
@@ -101,7 +103,7 @@ class StyleBuilder
     /**
      * Sets the font name.
      *
-     * @param string $fontName Name of the font to use
+     * @param  string $fontName Name of the font to use
      * @return StyleBuilder
      */
     public function setFontName($fontName)
@@ -114,7 +116,7 @@ class StyleBuilder
     /**
      * Makes the text wrap in the cell if requested
      *
-     * @param bool $shouldWrap Should the text be wrapped
+     * @param  bool $shouldWrap Should the text be wrapped
      * @return StyleBuilder
      */
     public function setShouldWrapText($shouldWrap = true)
@@ -146,7 +148,7 @@ class StyleBuilder
     /**
      * Set a border
      *
-     * @param Border $border
+     * @param  Border $border
      * @return $this
      */
     public function setBorder(Border $border)
@@ -159,7 +161,7 @@ class StyleBuilder
     /**
      *  Sets a background color
      *
-     * @param string $color ARGB color (@see Color)
+     * @param  string $color ARGB color (@see Color)
      * @return StyleBuilder
      */
     public function setBackgroundColor($color)
@@ -172,7 +174,7 @@ class StyleBuilder
     /**
      *  Sets a format
      *
-     * @param string $format Format
+     * @param  string $format Format
      * @return StyleBuilder
      * @api
      */

@@ -10,13 +10,19 @@ namespace Box\Spout\Common\Helper;
  */
 class StringHelper
 {
-    /** @var bool Whether the mbstring extension is loaded */
+    /**
+     * @var bool Whether the mbstring extension is loaded 
+     */
     protected $hasMbstringSupport;
 
-    /** @var bool Whether the code is running with PHP7 or older versions */
+    /**
+     * @var bool Whether the code is running with PHP7 or older versions 
+     */
     private $isRunningPhp7OrOlder;
 
-    /** @var array Locale info, used for number formatting */
+    /**
+     * @var array Locale info, used for number formatting 
+     */
     private $localeInfo;
 
     /**
@@ -32,10 +38,11 @@ class StringHelper
     /**
      * Returns the length of the given string.
      * It uses the multi-bytes function is available.
+     *
      * @see strlen
      * @see mb_strlen
      *
-     * @param string $string
+     * @param  string $string
      * @return int
      */
     public function getStringLength($string)
@@ -46,11 +53,12 @@ class StringHelper
     /**
      * Returns the position of the first occurrence of the given character/substring within the given string.
      * It uses the multi-bytes function is available.
+     *
      * @see strpos
      * @see mb_strpos
      *
-     * @param string $char Needle
-     * @param string $string Haystack
+     * @param  string $char   Needle
+     * @param  string $string Haystack
      * @return int Char/substring's first occurrence position within the string if found (starts at 0) or -1 if not found
      */
     public function getCharFirstOccurrencePosition($char, $string)
@@ -63,11 +71,12 @@ class StringHelper
     /**
      * Returns the position of the last occurrence of the given character/substring within the given string.
      * It uses the multi-bytes function is available.
+     *
      * @see strrpos
      * @see mb_strrpos
      *
-     * @param string $char Needle
-     * @param string $string Haystack
+     * @param  string $char   Needle
+     * @param  string $string Haystack
      * @return int Char/substring's last occurrence position within the string if found (starts at 0) or -1 if not found
      */
     public function getCharLastOccurrencePosition($char, $string)
@@ -87,7 +96,7 @@ class StringHelper
      *
      * @see https://wiki.php.net/rfc/locale_independent_float_to_string for the changed behavior in PHP8.
      *
-     * @param int|float $numericValue
+     * @param  int|float $numericValue
      * @return string
      */
     public function formatNumericValue($numericValue)

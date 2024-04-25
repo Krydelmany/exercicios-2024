@@ -11,7 +11,7 @@ class ODS implements EscaperInterface
     /**
      * Escapes the given string to make it compatible with XLSX
      *
-     * @param string $string The string to escape
+     * @param  string $string The string to escape
      * @return string The escaped string
      */
     public function escape($string)
@@ -43,7 +43,7 @@ class ODS implements EscaperInterface
     /**
      * Unescapes the given string to make it compatible with XLSX
      *
-     * @param string $string The string to unescape
+     * @param  string $string The string to unescape
      * @return string The unescaped string
      */
     public function unescape($string)

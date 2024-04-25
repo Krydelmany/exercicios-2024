@@ -11,13 +11,13 @@ use Box\Spout\Common\Entity\Row;
 interface InternalEntityFactoryInterface
 {
     /**
-     * @param Cell[] $cells
+     * @param  Cell[] $cells
      * @return Row
      */
     public function createRow(array $cells = []);
 
     /**
-     * @param mixed $cellValue
+     * @param  mixed $cellValue
      * @return Cell
      */
     public function createCell($cellValue);

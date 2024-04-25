@@ -22,7 +22,7 @@ class HelperFactory
     }
 
     /**
-     * @param string $baseFolderPath The path of the base folder where all the I/O can occur
+     * @param  string $baseFolderPath The path of the base folder where all the I/O can occur
      * @return FileSystemHelper
      */
     public function createFileSystemHelper($baseFolderPath)
@@ -31,7 +31,7 @@ class HelperFactory
     }
 
     /**
-     * @param GlobalFunctionsHelper $globalFunctionsHelper
+     * @param  GlobalFunctionsHelper $globalFunctionsHelper
      * @return EncodingHelper
      */
     public function createEncodingHelper(GlobalFunctionsHelper $globalFunctionsHelper)

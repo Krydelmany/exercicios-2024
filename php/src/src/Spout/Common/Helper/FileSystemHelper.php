@@ -11,7 +11,9 @@ use Box\Spout\Common\Exception\IOException;
  */
 class FileSystemHelper implements FileSystemHelperInterface
 {
-    /** @var string Real path of the base folder where all the I/O can occur */
+    /**
+     * @var string Real path of the base folder where all the I/O can occur 
+     */
     protected $baseFolderRealPath;
 
     /**
@@ -25,8 +27,8 @@ class FileSystemHelper implements FileSystemHelperInterface
     /**
      * Creates an empty folder with the given name under the given parent folder.
      *
-     * @param string $parentFolderPath The parent folder path under which the folder is going to be created
-     * @param string $folderName The name of the folder to create
+     * @param  string $parentFolderPath The parent folder path under which the folder is going to be created
+     * @param  string $folderName       The name of the folder to create
      * @throws \Box\Spout\Common\Exception\IOException If unable to create the folder or if the folder path is not inside of the base folder
      * @return string Path of the created folder
      */
@@ -48,9 +50,9 @@ class FileSystemHelper implements FileSystemHelperInterface
      * Creates a file with the given name and content in the given folder.
      * The parent folder must exist.
      *
-     * @param string $parentFolderPath The parent folder path where the file is going to be created
-     * @param string $fileName The name of the file to create
-     * @param string $fileContents The contents of the file to create
+     * @param  string $parentFolderPath The parent folder path where the file is going to be created
+     * @param  string $fileName         The name of the file to create
+     * @param  string $fileContents     The contents of the file to create
      * @throws \Box\Spout\Common\Exception\IOException If unable to create the file or if the file path is not inside of the base folder
      * @return string Path of the created file
      */
@@ -71,7 +73,7 @@ class FileSystemHelper implements FileSystemHelperInterface
     /**
      * Delete the file at the given path
      *
-     * @param string $filePath Path of the file to delete
+     * @param  string $filePath Path of the file to delete
      * @throws \Box\Spout\Common\Exception\IOException If the file path is not inside of the base folder
      * @return void
      */
@@ -87,7 +89,7 @@ class FileSystemHelper implements FileSystemHelperInterface
     /**
      * Delete the folder at the given path as well as all its contents
      *
-     * @param string $folderPath Path of the folder to delete
+     * @param  string $folderPath Path of the folder to delete
      * @throws \Box\Spout\Common\Exception\IOException If the folder path is not inside of the base folder
      * @return void
      */
@@ -116,7 +118,7 @@ class FileSystemHelper implements FileSystemHelperInterface
      * This function will throw an exception if the folder where the I/O operation
      * should occur is not inside the base folder.
      *
-     * @param string $operationFolderPath The path of the folder where the I/O operation should occur
+     * @param  string $operationFolderPath The path of the folder where the I/O operation should occur
      * @throws \Box\Spout\Common\Exception\IOException If the folder where the I/O operation should occur
      * is not inside the base folder or the base folder does not exist
      * @return void

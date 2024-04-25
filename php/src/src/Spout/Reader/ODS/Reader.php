@@ -12,10 +12,14 @@ use Box\Spout\Reader\ReaderAbstract;
  */
 class Reader extends ReaderAbstract
 {
-    /** @var \ZipArchive */
+    /**
+     * @var \ZipArchive 
+     */
     protected $zip;
 
-    /** @var SheetIterator To iterator over the ODS sheets */
+    /**
+     * @var SheetIterator To iterator over the ODS sheets 
+     */
     protected $sheetIterator;
 
     /**
@@ -38,13 +42,17 @@ class Reader extends ReaderAbstract
      */
     protected function openReader($filePath)
     {
-        /** @var InternalEntityFactory $entityFactory */
+        /**
+ * @var InternalEntityFactory $entityFactory 
+*/
         $entityFactory = $this->entityFactory;
 
         $this->zip = $entityFactory->createZipArchive();
 
         if ($this->zip->open($filePath) === true) {
-            /** @var InternalEntityFactory $entityFactory */
+            /**
+ * @var InternalEntityFactory $entityFactory 
+*/
             $entityFactory = $this->entityFactory;
             $this->sheetIterator = $entityFactory->createSheetIterator($filePath, $this->optionsManager);
         } else {

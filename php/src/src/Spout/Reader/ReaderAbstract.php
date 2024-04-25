@@ -16,16 +16,24 @@ use Box\Spout\Reader\Exception\ReaderNotOpenedException;
  */
 abstract class ReaderAbstract implements ReaderInterface
 {
-    /** @var bool Indicates whether the stream is currently open */
+    /**
+     * @var bool Indicates whether the stream is currently open 
+     */
     protected $isStreamOpened = false;
 
-    /** @var InternalEntityFactoryInterface Factory to create entities */
+    /**
+     * @var InternalEntityFactoryInterface Factory to create entities 
+     */
     protected $entityFactory;
 
-    /** @var \Box\Spout\Common\Helper\GlobalFunctionsHelper Helper to work with global functions */
+    /**
+     * @var \Box\Spout\Common\Helper\GlobalFunctionsHelper Helper to work with global functions 
+     */
     protected $globalFunctionsHelper;
 
-    /** @var OptionsManagerInterface Writer options manager */
+    /**
+     * @var OptionsManagerInterface Writer options manager 
+     */
     protected $optionsManager;
 
     /**
@@ -58,8 +66,8 @@ abstract class ReaderAbstract implements ReaderInterface
     abstract protected function closeReader();
 
     /**
-     * @param OptionsManagerInterface $optionsManager
-     * @param GlobalFunctionsHelper $globalFunctionsHelper
+     * @param OptionsManagerInterface        $optionsManager
+     * @param GlobalFunctionsHelper          $globalFunctionsHelper
      * @param InternalEntityFactoryInterface $entityFactory
      */
     public function __construct(
@@ -75,7 +83,7 @@ abstract class ReaderAbstract implements ReaderInterface
     /**
      * Sets whether date/time values should be returned as PHP objects or be formatted as strings.
      *
-     * @param bool $shouldFormatDates
+     * @param  bool $shouldFormatDates
      * @return ReaderAbstract
      */
     public function setShouldFormatDates($shouldFormatDates)
@@ -88,7 +96,7 @@ abstract class ReaderAbstract implements ReaderInterface
     /**
      * Sets whether empty rows should be returned or skipped.
      *
-     * @param bool $shouldPreserveEmptyRows
+     * @param  bool $shouldPreserveEmptyRows
      * @return ReaderAbstract
      */
     public function setShouldPreserveEmptyRows($shouldPreserveEmptyRows)
@@ -135,7 +143,7 @@ abstract class ReaderAbstract implements ReaderInterface
      * Returns the real path of the given path.
      * If the given path is a valid stream wrapper, returns the path unchanged.
      *
-     * @param string $filePath
+     * @param  string $filePath
      * @return string
      */
     protected function getFileRealPath($filePath)
@@ -152,7 +160,7 @@ abstract class ReaderAbstract implements ReaderInterface
      * Returns the scheme of the custom stream wrapper, if the path indicates a stream wrapper is used.
      * For example, php://temp => php, s3://path/to/file => s3...
      *
-     * @param string $filePath Path of the file to be read
+     * @param  string $filePath Path of the file to be read
      * @return string|null The stream wrapper scheme or NULL if not a stream wrapper
      */
     protected function getStreamWrapperScheme($filePath)
@@ -169,7 +177,7 @@ abstract class ReaderAbstract implements ReaderInterface
      * Checks if the given path is an unsupported stream wrapper
      * (like local path, php://temp, mystream://foo/bar...).
      *
-     * @param string $filePath Path of the file to be read
+     * @param  string $filePath Path of the file to be read
      * @return bool Whether the given path is an unsupported stream wrapper
      */
     protected function isStreamWrapper($filePath)
@@ -182,7 +190,7 @@ abstract class ReaderAbstract implements ReaderInterface
      * (like php://temp, mystream://foo/bar...).
      * If the given path is a local path, returns true.
      *
-     * @param string $filePath Path of the file to be read
+     * @param  string $filePath Path of the file to be read
      * @return bool Whether the given path is an supported stream wrapper
      */
     protected function isSupportedStreamWrapper($filePath)
@@ -197,7 +205,7 @@ abstract class ReaderAbstract implements ReaderInterface
     /**
      * Checks if a path is a PHP stream (like php://output, php://memory, ...)
      *
-     * @param string $filePath Path of the file to be read
+     * @param  string $filePath Path of the file to be read
      * @return bool Whether the given path maps to a PHP stream
      */
     protected function isPhpStream($filePath)

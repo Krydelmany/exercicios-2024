@@ -21,24 +21,32 @@ use Box\Spout\Writer\ODS\Manager\Style\StyleManager;
  */
 class WorksheetManager implements WorksheetManagerInterface
 {
-    /** @var \Box\Spout\Common\Helper\Escaper\ODS Strings escaper */
+    /**
+     * @var \Box\Spout\Common\Helper\Escaper\ODS Strings escaper 
+     */
     private $stringsEscaper;
 
-    /** @var StringHelper String helper */
+    /**
+     * @var StringHelper String helper 
+     */
     private $stringHelper;
 
-    /** @var StyleManager Manages styles */
+    /**
+     * @var StyleManager Manages styles 
+     */
     private $styleManager;
 
-    /** @var StyleMerger Helper to merge styles together */
+    /**
+     * @var StyleMerger Helper to merge styles together 
+     */
     private $styleMerger;
 
     /**
      * WorksheetManager constructor.
      *
      * @param StyleManager $styleManager
-     * @param StyleMerger $styleMerger
-     * @param ODSEscaper $stringsEscaper
+     * @param StyleMerger  $styleMerger
+     * @param ODSEscaper   $stringsEscaper
      * @param StringHelper $stringHelper
      */
     public function __construct(
@@ -56,7 +64,7 @@ class WorksheetManager implements WorksheetManagerInterface
     /**
      * Prepares the worksheet to accept data
      *
-     * @param Worksheet $worksheet The worksheet to start
+     * @param  Worksheet $worksheet The worksheet to start
      * @throws \Box\Spout\Common\Exception\IOException If the sheet data file cannot be opened for writing
      * @return void
      */
@@ -71,7 +79,7 @@ class WorksheetManager implements WorksheetManagerInterface
     /**
      * Checks if the sheet has been sucessfully created. Throws an exception if not.
      *
-     * @param bool|resource $sheetFilePointer Pointer to the sheet data file or FALSE if unable to open the file
+     * @param  bool|resource $sheetFilePointer Pointer to the sheet data file or FALSE if unable to open the file
      * @throws IOException If the sheet data file cannot be opened for writing
      * @return void
      */
@@ -85,7 +93,7 @@ class WorksheetManager implements WorksheetManagerInterface
     /**
      * Returns the table XML root node as string.
      *
-     * @param Worksheet $worksheet
+     * @param  Worksheet $worksheet
      * @return string <table> node as string
      */
     public function getTableElementStartAsString(Worksheet $worksheet)
@@ -103,8 +111,8 @@ class WorksheetManager implements WorksheetManagerInterface
     /**
      * Adds a row to the given worksheet.
      *
-     * @param Worksheet $worksheet The worksheet to add the row to
-     * @param Row $row The row to be added
+     * @param  Worksheet $worksheet The worksheet to add the row to
+     * @param  Row       $row       The row to be added
      * @throws InvalidArgumentException If a cell value's type is not supported
      * @throws IOException If the data cannot be written
      * @return void
@@ -120,9 +128,13 @@ class WorksheetManager implements WorksheetManagerInterface
         $nextCellIndex = 1;
 
         for ($i = 0; $i < $row->getNumCells(); $i++) {
-            /** @var Cell $cell */
+            /**
+ * @var Cell $cell 
+*/
             $cell = $cells[$currentCellIndex];
-            /** @var Cell|null $nextCell */
+            /**
+ * @var Cell|null $nextCell 
+*/
             $nextCell = isset($cells[$nextCellIndex]) ? $cells[$nextCellIndex] : null;
 
             if ($nextCell === null || $cell->getValue() !== $nextCell->getValue()) {
@@ -154,8 +166,8 @@ class WorksheetManager implements WorksheetManagerInterface
     /**
      * Applies styles to the given style, merging the cell's style with its row's style
      *
-     * @param Cell $cell
-     * @param Style $rowStyle
+     * @param  Cell  $cell
+     * @param  Style $rowStyle
      * @throws InvalidArgumentException If a cell value's type is not supported
      * @return RegisteredStyle
      */
@@ -202,9 +214,9 @@ class WorksheetManager implements WorksheetManagerInterface
     /**
      * Returns the cell XML content, given its value.
      *
-     * @param Cell $cell The cell to be written
-     * @param int $styleIndex Index of the used style
-     * @param int $numTimesValueRepeated Number of times the value is consecutively repeated
+     * @param  Cell $cell                  The cell to be written
+     * @param  int  $styleIndex            Index of the used style
+     * @param  int  $numTimesValueRepeated Number of times the value is consecutively repeated
      * @throws InvalidArgumentException If a cell value's type is not supported
      * @return string The cell XML content
      */
@@ -252,7 +264,7 @@ class WorksheetManager implements WorksheetManagerInterface
     /**
      * Closes the worksheet
      *
-     * @param Worksheet $worksheet
+     * @param  Worksheet $worksheet
      * @return void
      */
     public function close(Worksheet $worksheet)

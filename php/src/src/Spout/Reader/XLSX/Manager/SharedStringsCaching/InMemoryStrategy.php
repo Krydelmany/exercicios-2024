@@ -12,10 +12,14 @@ use Box\Spout\Reader\Exception\SharedStringNotFoundException;
  */
 class InMemoryStrategy implements CachingStrategyInterface
 {
-    /** @var \SplFixedArray Array used to cache the shared strings */
+    /**
+     * @var \SplFixedArray Array used to cache the shared strings 
+     */
     protected $inMemoryCache;
 
-    /** @var bool Whether the cache has been closed */
+    /**
+     * @var bool Whether the cache has been closed 
+     */
     protected $isCacheClosed;
 
     /**
@@ -30,8 +34,8 @@ class InMemoryStrategy implements CachingStrategyInterface
     /**
      * Adds the given string to the cache.
      *
-     * @param string $sharedString The string to be added to the cache
-     * @param int $sharedStringIndex Index of the shared string in the sharedStrings.xml file
+     * @param  string $sharedString      The string to be added to the cache
+     * @param  int    $sharedStringIndex Index of the shared string in the sharedStrings.xml file
      * @return void
      */
     public function addStringForIndex($sharedString, $sharedStringIndex)
@@ -55,7 +59,7 @@ class InMemoryStrategy implements CachingStrategyInterface
     /**
      * Returns the string located at the given index from the cache.
      *
-     * @param int $sharedStringIndex Index of the shared string in the sharedStrings.xml file
+     * @param  int $sharedStringIndex Index of the shared string in the sharedStrings.xml file
      * @throws \Box\Spout\Reader\Exception\SharedStringNotFoundException If no shared string found for the given index
      * @return string The shared string at the given index
      */

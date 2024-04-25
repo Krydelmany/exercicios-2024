@@ -10,7 +10,9 @@ use Box\Spout\Common\Exception\InvalidColorException;
  */
 abstract class Color
 {
-    /** Standard colors - based on Office Online */
+    /**
+ * Standard colors - based on Office Online 
+*/
     const BLACK = '000000';
     const WHITE = 'FFFFFF';
     const RED = 'FF0000';
@@ -27,9 +29,9 @@ abstract class Color
     /**
      * Returns an RGB color from R, G and B values
      *
-     * @param int $red Red component, 0 - 255
-     * @param int $green Green component, 0 - 255
-     * @param int $blue Blue component, 0 - 255
+     * @param  int $red   Red component, 0 - 255
+     * @param  int $green Green component, 0 - 255
+     * @param  int $blue  Blue component, 0 - 255
      * @return string RGB color
      */
     public static function rgb($red, $green, $blue)
@@ -48,7 +50,7 @@ abstract class Color
     /**
      * Throws an exception is the color component value is outside of bounds (0 - 255)
      *
-     * @param int $colorComponent
+     * @param  int $colorComponent
      * @throws \Box\Spout\Common\Exception\InvalidColorException
      * @return void
      */
@@ -62,7 +64,7 @@ abstract class Color
     /**
      * Converts the color component to its corresponding hexadecimal value
      *
-     * @param int $colorComponent Color component, 0 - 255
+     * @param  int $colorComponent Color component, 0 - 255
      * @return string Corresponding hexadecimal value, with a leading 0 if needed. E.g "0f", "2d"
      */
     protected static function convertColorComponentToHex($colorComponent)
@@ -74,7 +76,7 @@ abstract class Color
      * Returns the ARGB color of the given RGB color,
      * assuming that alpha value is always 1.
      *
-     * @param string $rgbColor RGB color like "FF08B2"
+     * @param  string $rgbColor RGB color like "FF08B2"
      * @return string ARGB color
      */
     public static function toARGB($rgbColor)

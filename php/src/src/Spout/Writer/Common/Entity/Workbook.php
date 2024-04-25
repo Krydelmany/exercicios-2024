@@ -8,10 +8,14 @@ namespace Box\Spout\Writer\Common\Entity;
  */
 class Workbook
 {
-    /** @var Worksheet[] List of the workbook's sheets */
+    /**
+     * @var Worksheet[] List of the workbook's sheets 
+     */
     private $worksheets = [];
 
-    /** @var string Timestamp based unique ID identifying the workbook */
+    /**
+     * @var string Timestamp based unique ID identifying the workbook 
+     */
     private $internalId;
 
     /**

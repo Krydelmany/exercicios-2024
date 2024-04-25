@@ -48,18 +48,21 @@ class Cell
 
     /**
      * The value of this cell
+     *
      * @var mixed|null
      */
     protected $value;
 
     /**
      * The cell type
+     *
      * @var int|null
      */
     protected $type;
 
     /**
      * The cell style
+     *
      * @var Style
      */
     protected $style;
@@ -134,7 +137,7 @@ class Cell
     /**
      * Get the current value type
      *
-     * @param mixed|null $value
+     * @param  mixed|null $value
      * @return int
      */
     protected function detectType($value)

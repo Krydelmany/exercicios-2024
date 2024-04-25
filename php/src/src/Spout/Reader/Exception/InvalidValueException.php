@@ -9,13 +9,15 @@ use Throwable;
  */
 class InvalidValueException extends ReaderException
 {
-    /** @var mixed */
+    /**
+     * @var mixed 
+     */
     private $invalidValue;
 
     /**
-     * @param mixed $invalidValue
-     * @param string $message
-     * @param int $code
+     * @param mixed          $invalidValue
+     * @param string         $message
+     * @param int            $code
      * @param Throwable|null $previous
      */
     public function __construct($invalidValue, $message = '', $code = 0, Throwable $previous = null)

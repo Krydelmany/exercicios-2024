@@ -114,7 +114,7 @@ class StyleRegistry extends \Box\Spout\Writer\Common\Manager\Style\StyleRegistry
     /**
      * XLSX specific operations on the registered styles
      *
-     * @param Style $style
+     * @param  Style $style
      * @return Style
      */
     public function registerStyle(Style $style)
@@ -163,7 +163,7 @@ class StyleRegistry extends \Box\Spout\Writer\Common\Manager\Style\StyleRegistry
     }
 
     /**
-     * @param int $styleId
+     * @param  int $styleId
      * @return int|null Format ID associated to the given style ID
      */
     public function getFormatIdForStyleId($styleId)
@@ -204,7 +204,7 @@ class StyleRegistry extends \Box\Spout\Writer\Common\Manager\Style\StyleRegistry
     }
 
     /**
-     * @param int $styleId
+     * @param  int $styleId
      * @return int|null Fill ID associated to the given style ID
      */
     public function getFillIdForStyleId($styleId)
@@ -244,7 +244,7 @@ class StyleRegistry extends \Box\Spout\Writer\Common\Manager\Style\StyleRegistry
     }
 
     /**
-     * @param int $styleId
+     * @param  int $styleId
      * @return int|null Fill ID associated to the given style ID
      */
     public function getBorderIdForStyleId($styleId)

@@ -29,34 +29,50 @@ class FileSystemHelper extends \Box\Spout\Common\Helper\FileSystemHelper impleme
     const WORKBOOK_RELS_XML_FILE_NAME = 'workbook.xml.rels';
     const STYLES_XML_FILE_NAME = 'styles.xml';
 
-    /** @var ZipHelper Helper to perform tasks with Zip archive */
+    /**
+     * @var ZipHelper Helper to perform tasks with Zip archive 
+     */
     private $zipHelper;
 
-    /** @var \Box\Spout\Common\Helper\Escaper\XLSX Used to escape XML data */
+    /**
+     * @var \Box\Spout\Common\Helper\Escaper\XLSX Used to escape XML data 
+     */
     private $escaper;
 
-    /** @var string Path to the root folder inside the temp folder where the files to create the XLSX will be stored */
+    /**
+     * @var string Path to the root folder inside the temp folder where the files to create the XLSX will be stored 
+     */
     private $rootFolder;
 
-    /** @var string Path to the "_rels" folder inside the root folder */
+    /**
+     * @var string Path to the "_rels" folder inside the root folder 
+     */
     private $relsFolder;
 
-    /** @var string Path to the "docProps" folder inside the root folder */
+    /**
+     * @var string Path to the "docProps" folder inside the root folder 
+     */
     private $docPropsFolder;
 
-    /** @var string Path to the "xl" folder inside the root folder */
+    /**
+     * @var string Path to the "xl" folder inside the root folder 
+     */
     private $xlFolder;
 
-    /** @var string Path to the "_rels" folder inside the "xl" folder */
+    /**
+     * @var string Path to the "_rels" folder inside the "xl" folder 
+     */
     private $xlRelsFolder;
 
-    /** @var string Path to the "worksheets" folder inside the "xl" folder */
+    /**
+     * @var string Path to the "worksheets" folder inside the "xl" folder 
+     */
     private $xlWorksheetsFolder;
 
     /**
-     * @param string $baseFolderPath The path of the base folder where all the I/O can occur
-     * @param ZipHelper $zipHelper Helper to perform tasks with Zip archive
-     * @param \Box\Spout\Common\Helper\Escaper\XLSX $escaper Used to escape XML data
+     * @param string                                $baseFolderPath The path of the base folder where all the I/O can occur
+     * @param ZipHelper                             $zipHelper      Helper to perform tasks with Zip archive
+     * @param \Box\Spout\Common\Helper\Escaper\XLSX $escaper        Used to escape XML data
      */
     public function __construct($baseFolderPath, $zipHelper, $escaper)
     {
@@ -259,7 +275,7 @@ EOD;
     /**
      * Creates the "[Content_Types].xml" file under the root folder
      *
-     * @param Worksheet[] $worksheets
+     * @param  Worksheet[] $worksheets
      * @return FileSystemHelper
      */
     public function createContentTypesFile($worksheets)
@@ -272,7 +288,9 @@ EOD;
     <Override ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml" PartName="/xl/workbook.xml"/>
 EOD;
 
-        /** @var Worksheet $worksheet */
+        /**
+ * @var Worksheet $worksheet 
+*/
         foreach ($worksheets as $worksheet) {
             $contentTypesXmlFileContents .= '<Override ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml" PartName="/xl/worksheets/sheet' . $worksheet->getId() . '.xml"/>';
         }
@@ -293,7 +311,7 @@ EOD;
     /**
      * Creates the "workbook.xml" file under the "xl" folder
      *
-     * @param Worksheet[] $worksheets
+     * @param  Worksheet[] $worksheets
      * @return FileSystemHelper
      */
     public function createWorkbookFile($worksheets)
@@ -304,7 +322,9 @@ EOD;
     <sheets>
 EOD;
 
-        /** @var Worksheet $worksheet */
+        /**
+ * @var Worksheet $worksheet 
+*/
         foreach ($worksheets as $worksheet) {
             $worksheetName = $worksheet->getExternalSheet()->getName();
             $worksheetVisibility = $worksheet->getExternalSheet()->isVisible() ? 'visible' : 'hidden';
@@ -325,7 +345,7 @@ EOD;
     /**
      * Creates the "workbook.xml.res" file under the "xl/_res" folder
      *
-     * @param Worksheet[] $worksheets
+     * @param  Worksheet[] $worksheets
      * @return FileSystemHelper
      */
     public function createWorkbookRelsFile($worksheets)
@@ -337,7 +357,9 @@ EOD;
     <Relationship Id="rIdSharedStrings" Target="sharedStrings.xml" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings"/>
 EOD;
 
-        /** @var Worksheet $worksheet */
+        /**
+ * @var Worksheet $worksheet 
+*/
         foreach ($worksheets as $worksheet) {
             $worksheetId = $worksheet->getId();
             $workbookRelsXmlFileContents .= '<Relationship Id="rIdSheet' . $worksheetId . '" Target="worksheets/sheet' . $worksheetId . '.xml" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet"/>';
@@ -353,7 +375,7 @@ EOD;
     /**
      * Creates the "styles.xml" file under the "xl" folder
      *
-     * @param StyleManager $styleManager
+     * @param  StyleManager $styleManager
      * @return FileSystemHelper
      */
     public function createStylesFile($styleManager)
@@ -367,7 +389,7 @@ EOD;
     /**
      * Zips the root folder and streams the contents of the zip into the given stream
      *
-     * @param resource $streamPointer Pointer to the stream to copy the zip
+     * @param  resource $streamPointer Pointer to the stream to copy the zip
      * @return void
      */
     public function zipRootFolderAndCopyToStream($streamPointer)

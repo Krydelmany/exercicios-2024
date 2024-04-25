@@ -22,10 +22,14 @@ class XMLProcessor
     const PROCESSING_CONTINUE = 1;
     const PROCESSING_STOP = 2;
 
-    /** @var \Box\Spout\Reader\Wrapper\XMLReader The XMLReader object that will help read sheet's XML data */
+    /**
+     * @var \Box\Spout\Reader\Wrapper\XMLReader The XMLReader object that will help read sheet's XML data 
+     */
     protected $xmlReader;
 
-    /** @var array Registered callbacks */
+    /**
+     * @var array Registered callbacks 
+     */
     private $callbacks = [];
 
     /**
@@ -37,9 +41,9 @@ class XMLProcessor
     }
 
     /**
-     * @param string $nodeName A callback may be triggered when a node with this name is read
-     * @param int $nodeType Type of the node [NODE_TYPE_START || NODE_TYPE_END]
-     * @param callable $callback Callback to execute when the read node has the given name and type
+     * @param  string   $nodeName A callback may be triggered when a node with this name is read
+     * @param  int      $nodeType Type of the node [NODE_TYPE_START || NODE_TYPE_END]
+     * @param  callable $callback Callback to execute when the read node has the given name and type
      * @return XMLProcessor
      */
     public function registerCallback($nodeName, $nodeType, $callback)
@@ -51,8 +55,8 @@ class XMLProcessor
     }
 
     /**
-     * @param string $nodeName Name of the node
-     * @param int $nodeType Type of the node [NODE_TYPE_START || NODE_TYPE_END]
+     * @param  string $nodeName Name of the node
+     * @param  int    $nodeType Type of the node [NODE_TYPE_START || NODE_TYPE_END]
      * @return string Key used to store the associated callback
      */
     private function getCallbackKey($nodeName, $nodeType)
@@ -66,7 +70,7 @@ class XMLProcessor
      * Since some functions can be called a lot, we pre-process the callback to only return the elements that
      * will be needed to invoke the callback later.
      *
-     * @param callable $callback Array reference to a callback: [OBJECT, METHOD_NAME]
+     * @param  callable $callback Array reference to a callback: [OBJECT, METHOD_NAME]
      * @return array Associative array containing the elements needed to invoke the callback using Reflection
      */
     private function getInvokableCallbackData($callback)
@@ -110,9 +114,9 @@ class XMLProcessor
     }
 
     /**
-     * @param string $nodeNamePossiblyWithPrefix Name of the node, possibly prefixed
-     * @param string $nodeNameWithoutPrefix Name of the same node, un-prefixed
-     * @param int $nodeType Type of the node [NODE_TYPE_START || NODE_TYPE_END]
+     * @param  string $nodeNamePossiblyWithPrefix Name of the node, possibly prefixed
+     * @param  string $nodeNameWithoutPrefix      Name of the same node, un-prefixed
+     * @param  int    $nodeType                   Type of the node [NODE_TYPE_START || NODE_TYPE_END]
      * @return array|null Callback data to be used for execution when a node of the given name/type is read or NULL if none found
      */
     private function getRegisteredCallbackData($nodeNamePossiblyWithPrefix, $nodeNameWithoutPrefix, $nodeType)
@@ -134,8 +138,8 @@ class XMLProcessor
     }
 
     /**
-     * @param array $callbackData Associative array containing data to invoke the callback using Reflection
-     * @param array $args Arguments to pass to the callback
+     * @param  array $callbackData Associative array containing data to invoke the callback using Reflection
+     * @param  array $args         Arguments to pass to the callback
      * @return int Callback response
      */
     private function invokeCallback($callbackData, $args)

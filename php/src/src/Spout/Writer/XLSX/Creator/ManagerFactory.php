@@ -21,15 +21,19 @@ use Box\Spout\Writer\XLSX\Manager\WorksheetManager;
  */
 class ManagerFactory implements ManagerFactoryInterface
 {
-    /** @var InternalEntityFactory */
+    /**
+     * @var InternalEntityFactory 
+     */
     protected $entityFactory;
 
-    /** @var HelperFactory */
+    /**
+     * @var HelperFactory 
+     */
     protected $helperFactory;
 
     /**
      * @param InternalEntityFactory $entityFactory
-     * @param HelperFactory $helperFactory
+     * @param HelperFactory         $helperFactory
      */
     public function __construct(InternalEntityFactory $entityFactory, HelperFactory $helperFactory)
     {
@@ -38,7 +42,7 @@ class ManagerFactory implements ManagerFactoryInterface
     }
 
     /**
-     * @param OptionsManagerInterface $optionsManager
+     * @param  OptionsManagerInterface $optionsManager
      * @return WorkbookManager
      */
     public function createWorkbookManager(OptionsManagerInterface $optionsManager)
@@ -68,10 +72,10 @@ class ManagerFactory implements ManagerFactoryInterface
     }
 
     /**
-     * @param OptionsManagerInterface $optionsManager
-     * @param StyleManager $styleManager
-     * @param StyleMerger $styleMerger
-     * @param SharedStringsManager $sharedStringsManager
+     * @param  OptionsManagerInterface $optionsManager
+     * @param  StyleManager            $styleManager
+     * @param  StyleMerger             $styleMerger
+     * @param  SharedStringsManager    $sharedStringsManager
      * @return WorksheetManager
      */
     private function createWorksheetManager(
@@ -115,7 +119,7 @@ class ManagerFactory implements ManagerFactoryInterface
     }
 
     /**
-     * @param OptionsManagerInterface $optionsManager
+     * @param  OptionsManagerInterface $optionsManager
      * @return StyleManager
      */
     private function createStyleManager(OptionsManagerInterface $optionsManager)
@@ -126,7 +130,7 @@ class ManagerFactory implements ManagerFactoryInterface
     }
 
     /**
-     * @param OptionsManagerInterface $optionsManager
+     * @param  OptionsManagerInterface $optionsManager
      * @return StyleRegistry
      */
     private function createStyleRegistry(OptionsManagerInterface $optionsManager)
@@ -145,7 +149,7 @@ class ManagerFactory implements ManagerFactoryInterface
     }
 
     /**
-     * @param string $xlFolder Path to the "xl" folder
+     * @param  string $xlFolder Path to the "xl" folder
      * @return SharedStringsManager
      */
     private function createSharedStringsManager($xlFolder)

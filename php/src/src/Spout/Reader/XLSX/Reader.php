@@ -17,23 +17,31 @@ use Box\Spout\Reader\XLSX\Creator\ManagerFactory;
  */
 class Reader extends ReaderAbstract
 {
-    /** @var ManagerFactory */
+    /**
+     * @var ManagerFactory 
+     */
     protected $managerFactory;
 
-    /** @var \ZipArchive */
+    /**
+     * @var \ZipArchive 
+     */
     protected $zip;
 
-    /** @var \Box\Spout\Reader\XLSX\Manager\SharedStringsManager Manages shared strings */
+    /**
+     * @var \Box\Spout\Reader\XLSX\Manager\SharedStringsManager Manages shared strings 
+     */
     protected $sharedStringsManager;
 
-    /** @var SheetIterator To iterator over the XLSX sheets */
+    /**
+     * @var SheetIterator To iterator over the XLSX sheets 
+     */
     protected $sheetIterator;
 
     /**
-     * @param OptionsManagerInterface $optionsManager
-     * @param GlobalFunctionsHelper $globalFunctionsHelper
+     * @param OptionsManagerInterface        $optionsManager
+     * @param GlobalFunctionsHelper          $globalFunctionsHelper
      * @param InternalEntityFactoryInterface $entityFactory
-     * @param ManagerFactory $managerFactory
+     * @param ManagerFactory                 $managerFactory
      */
     public function __construct(
         OptionsManagerInterface $optionsManager,
@@ -46,7 +54,7 @@ class Reader extends ReaderAbstract
     }
 
     /**
-     * @param string $tempFolder Temporary folder where the temporary files will be created
+     * @param  string $tempFolder Temporary folder where the temporary files will be created
      * @return Reader
      */
     public function setTempFolder($tempFolder)
@@ -78,7 +86,9 @@ class Reader extends ReaderAbstract
      */
     protected function openReader($filePath)
     {
-        /** @var InternalEntityFactory $entityFactory */
+        /**
+ * @var InternalEntityFactory $entityFactory 
+*/
         $entityFactory = $this->entityFactory;
 
         $this->zip = $entityFactory->createZipArchive();

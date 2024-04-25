@@ -30,7 +30,7 @@ class WriterEntityFactory
     /**
      * This creates an instance of the appropriate writer, given the extension of the file to be written
      *
-     * @param string $path The path to the spreadsheet file. Supported extensions are .csv, .ods and .xlsx
+     * @param  string $path The path to the spreadsheet file. Supported extensions are .csv, .ods and .xlsx
      * @throws \Box\Spout\Common\Exception\UnsupportedTypeException
      * @return WriterInterface
      */
@@ -82,8 +82,8 @@ class WriterEntityFactory
     }
 
     /**
-     * @param Cell[] $cells
-     * @param Style|null $rowStyle
+     * @param  Cell[]     $cells
+     * @param  Style|null $rowStyle
      * @return Row
      */
     public static function createRow(array $cells = [], Style $rowStyle = null)
@@ -92,22 +92,24 @@ class WriterEntityFactory
     }
 
     /**
-     * @param array $cellValues
-     * @param Style|null $rowStyle
+     * @param  array      $cellValues
+     * @param  Style|null $rowStyle
      * @return Row
      */
     public static function createRowFromArray(array $cellValues = [], Style $rowStyle = null)
     {
-        $cells = \array_map(function ($cellValue) {
-            return new Cell($cellValue);
-        }, $cellValues);
+        $cells = \array_map(
+            function ($cellValue) {
+                return new Cell($cellValue);
+            }, $cellValues
+        );
 
         return new Row($cells, $rowStyle);
     }
 
     /**
-     * @param mixed $cellValue
-     * @param Style|null $cellStyle
+     * @param  mixed      $cellValue
+     * @param  Style|null $cellStyle
      * @return Cell
      */
     public static function createCell($cellValue, Style $cellStyle = null)

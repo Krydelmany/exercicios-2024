@@ -18,7 +18,9 @@ use Box\Spout\Reader\CSV\SheetIterator;
  */
 class InternalEntityFactory implements InternalEntityFactoryInterface
 {
-    /** @var HelperFactory */
+    /**
+     * @var HelperFactory 
+     */
     private $helperFactory;
 
     /**
@@ -30,9 +32,9 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param resource $filePointer Pointer to the CSV file to read
-     * @param OptionsManagerInterface $optionsManager
-     * @param GlobalFunctionsHelper $globalFunctionsHelper
+     * @param  resource                $filePointer           Pointer to the CSV file to read
+     * @param  OptionsManagerInterface $optionsManager
+     * @param  GlobalFunctionsHelper   $globalFunctionsHelper
      * @return SheetIterator
      */
     public function createSheetIterator($filePointer, $optionsManager, $globalFunctionsHelper)
@@ -44,7 +46,7 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param RowIterator $rowIterator
+     * @param  RowIterator $rowIterator
      * @return Sheet
      */
     private function createSheet($rowIterator)
@@ -53,9 +55,9 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param resource $filePointer Pointer to the CSV file to read
-     * @param OptionsManagerInterface $optionsManager
-     * @param GlobalFunctionsHelper $globalFunctionsHelper
+     * @param  resource                $filePointer           Pointer to the CSV file to read
+     * @param  OptionsManagerInterface $optionsManager
+     * @param  GlobalFunctionsHelper   $globalFunctionsHelper
      * @return RowIterator
      */
     private function createRowIterator($filePointer, $optionsManager, $globalFunctionsHelper)
@@ -66,7 +68,7 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param Cell[] $cells
+     * @param  Cell[] $cells
      * @return Row
      */
     public function createRow(array $cells = [])
@@ -75,7 +77,7 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param mixed $cellValue
+     * @param  mixed $cellValue
      * @return Cell
      */
     public function createCell($cellValue)
@@ -84,14 +86,16 @@ class InternalEntityFactory implements InternalEntityFactoryInterface
     }
 
     /**
-     * @param array $cellValues
+     * @param  array $cellValues
      * @return Row
      */
     public function createRowFromArray(array $cellValues = [])
     {
-        $cells = \array_map(function ($cellValue) {
-            return $this->createCell($cellValue);
-        }, $cellValues);
+        $cells = \array_map(
+            function ($cellValue) {
+                return $this->createCell($cellValue);
+            }, $cellValues
+        );
 
         return $this->createRow($cells);
     }

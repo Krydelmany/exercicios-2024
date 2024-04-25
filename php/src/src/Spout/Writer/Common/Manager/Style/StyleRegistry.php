@@ -10,10 +10,14 @@ use Box\Spout\Common\Entity\Style\Style;
  */
 class StyleRegistry
 {
-    /** @var array [SERIALIZED_STYLE] => [STYLE_ID] mapping table, keeping track of the registered styles */
+    /**
+     * @var array [SERIALIZED_STYLE] => [STYLE_ID] mapping table, keeping track of the registered styles 
+     */
     protected $serializedStyleToStyleIdMappingTable = [];
 
-    /** @var array [STYLE_ID] => [STYLE] mapping table, keeping track of the registered styles */
+    /**
+     * @var array [STYLE_ID] => [STYLE] mapping table, keeping track of the registered styles 
+     */
     protected $styleIdToStyleMappingTable = [];
 
     /**
@@ -29,7 +33,7 @@ class StyleRegistry
      * Registers the given style as a used style.
      * Duplicate styles won't be registered more than once.
      *
-     * @param Style $style The style to be registered
+     * @param  Style $style The style to be registered
      * @return Style The registered style, updated with an internal ID.
      */
     public function registerStyle(Style $style)
@@ -50,7 +54,7 @@ class StyleRegistry
     /**
      * Returns whether the serialized style has already been registered.
      *
-     * @param string $serializedStyle The serialized style
+     * @param  string $serializedStyle The serialized style
      * @return bool
      */
     protected function hasSerializedStyleAlreadyBeenRegistered(string $serializedStyle)
@@ -62,7 +66,7 @@ class StyleRegistry
     /**
      * Returns the registered style associated to the given serialization.
      *
-     * @param string $serializedStyle The serialized style from which the actual style should be fetched from
+     * @param  string $serializedStyle The serialized style from which the actual style should be fetched from
      * @return Style
      */
     protected function getStyleFromSerializedStyle($serializedStyle)
@@ -81,7 +85,7 @@ class StyleRegistry
     }
 
     /**
-     * @param int $styleId
+     * @param  int $styleId
      * @return Style
      */
     public function getStyleFromStyleId($styleId)
@@ -94,7 +98,7 @@ class StyleRegistry
      * The ID is excluded from the comparison, as we only care about
      * actual style properties.
      *
-     * @param Style $style
+     * @param  Style $style
      * @return string The serialized style
      */
     public function serialize(Style $style)
