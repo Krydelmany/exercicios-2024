@@ -6,6 +6,7 @@ namespace Chuva\Php\WebScrapping;
  * Runner for the Webscrapping exercise.
  */
 class Main {
+
   /**
    * Main runner, instantiates a Scrapper and runs.
    */
