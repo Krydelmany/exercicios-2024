@@ -17,13 +17,13 @@ use DOMXPath;
  */
 class Scrapper {
   /**
-   * Loads paper information from the HTML, performs scraping, and writes the data into a XLSX file.
+   * Loads paper information from the HTML, writes the data into a XLSX file.
    *
    * @param \DOMDocument $dom  The DOMDocument object representing the HTML structure of the webpage.
-   * @param string       $path The path where the XLSX file will be saved.
+   * @param string $path The path where the XLSX file will be saved.
    */
-  public function scrapAndWriteXlsx(\DOMDocument $dom, string $path): void {
-    $papers = $this->scrap($dom); // Perform scraping to get the data
+  public function scrapAndWriteXlsx(\DOMDocument $dom, string $path) : void {
+    $papers = $this->scrap($dom); 
 
     // Write the scraped data into a XLSX file.
     $this->writeXlsx($papers, $path);
@@ -67,17 +67,17 @@ class Scrapper {
 
     // Set border.
     $border = (new BorderBuilder())
-          ->setBorderBottom(Color::BLACK, Border::WIDTH_THIN, Border::STYLE_SOLID)
-          ->build();
+      ->setBorderBottom(Color::BLACK, Border::WIDTH_THIN, Border::STYLE_SOLID)
+      ->build();
 
-        // Set styles.
+    // Set styles.
     $style = (new StyleBuilder())
-          ->setFontBold()
-          ->setBorder($border)
-          ->setCellAlignment(CellAlignment::CENTER)
-          ->build();
+      ->setFontBold()
+      ->setBorder($border)
+      ->setCellAlignment(CellAlignment::CENTER)
+      ->build();
 
-        // Set styles for header row.
+    // Set styles for header row.
     $headerRow = WriterEntityFactory::createRowFromArray($formattedData[0]);
     foreach ($headerRow->getCells() as $cell) {
       $cell->setStyle($style);
@@ -91,21 +91,40 @@ class Scrapper {
     }
 
     $writer->close();
-  }
+    }
 
   public function formatData(array $data): array {
     $formattedData = [];
 
     // Set header row.
-    $formattedData[] = ['ID', 'Title', 'Type', 'Author 1', 'Author 1 Institution', 'Author 2', 'Author 2 Institution', 'Author 3', 'Author 3 Institution', 'Author 4', 'Author 4  Institution', 'Author 5', 'Author 5 Institution', 'Author 6', 'Author 6 Institution', 'Author 7', 'Author 7 Institution', 'Author 8', 'Author 8 Institution', 'Author 9',  'Author 9 Institution'];
+    $formattedData[] = ['ID',
+    'Title', 
+    'Type', 
+    'Author 1', 
+    'Author 1 Institution', 
+    'Author 2', 
+    'Author 2 Institution', 
+    'Author 3', 
+    'Author 3 Institution', 
+    'Author 4', 
+    'Author 4  Institution', 
+    'Author 5', 
+    'Author 5 Institution', 
+    'Author 6', 
+    'Author 6 Institution', 
+    'Author 7', 
+    'Author 7 Institution', 
+    'Author 8', 
+    'Author 8 Institution', 
+    'Author 9',  
+    'Author 9 Institution'];
 
     // Format data rows.
     foreach ($data as $paper) {
       $formattedPaper = [
       $paper->id,
       $paper->title,
-      $paper->type,
-            ];
+      $paper->type,];
 
       foreach ($paper->authors as $author) {
         $formattedPaper[] = $author->name;
