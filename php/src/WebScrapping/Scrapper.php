@@ -15,12 +15,13 @@ use Chuva\Php\WebScrapping\Entity\Person;
  * Does the scraping of a webpage and writes the data into a XLSX file.
  */
 class Scrapper {
-/**
- * Loads paper information from the HTML, writes the data into a XLSX file.
- *
- * @param \DOMDocument $dom  The DOMDocument object representing the HTML structure of the webpage.
- * @param string $path  The path where the XLSX file will be saved.
- */
+
+  /**
+   * Loads paper information from the HTML, writes the data into a XLSX file.
+   *
+   * @param \DOMDocument $dom  The DOMDocument object representing the HTML structure of the webpage.
+   * @param string $path  The path where the XLSX file will be saved.
+   */
   public function scrapAndWriteXlsx(\DOMDocument $dom, string $path) : void {
 
     $papers = $this->scrap($dom);
@@ -125,7 +126,8 @@ class Scrapper {
       'Author 7 Institution',
       'Author 8',
       'Author 8 Institution',
-      'Author 9', 'Author 9 Institution'
+      'Author 9',
+      'Author 9 Institution',
       ];
 
     // Format data rows.
@@ -134,7 +136,7 @@ class Scrapper {
         $paper->id,
         $paper->title,
         $paper->type,
-    ];
+      ];
 
       foreach ($paper->authors as $author) {
         $formattedPaper[] = $author->name;
