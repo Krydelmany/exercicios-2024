@@ -23,4 +23,5 @@ class Person {
     $this->name = $name;
     $this->institution = $institution;
   }
+
 }
