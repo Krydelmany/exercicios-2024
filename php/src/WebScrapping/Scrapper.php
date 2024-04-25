@@ -10,32 +10,33 @@ use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
 use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
 use Chuva\Php\WebScrapping\Entity\Paper;
 use Chuva\Php\WebScrapping\Entity\Person;
-use DOMXPath;
 
 /**
  * Does the scraping of a webpage and writes the data into a XLSX file.
  */
 class Scrapper {
-  /**
-   * Loads paper information from the HTML, writes the data into a XLSX file.
-   *
-   * @param \DOMDocument $dom  The DOMDocument object representing the HTML structure of the webpage.
-   * @param string $path The path where the XLSX file will be saved.
-   */
+/**
+ * Loads paper information from the HTML, writes the data into a XLSX file.
+ *
+ * @param \DOMDocument $dom  The DOMDocument object representing the HTML structure of the webpage.
+ * @param string $path  The path where the XLSX file will be saved.
+ */
   public function scrapAndWriteXlsx(\DOMDocument $dom, string $path) : void {
 
-    $papers = $this->scrap($dom); 
+    $papers = $this->scrap($dom);
 
     // Write the scraped data into a XLSX file.
     $this->writeXlsx($papers, $path);
   }
 
-  // This function takes a \DOMDocument object as input returns paper objects.
+  /**
+   * Takes a \DOMDocument object as input returns paper objects.
+   */
   public function scrap(\DOMDocument $document): array {
     $papers = [];
     $index = 0;
 
-    $xpath = new DOMXPath($document);
+    $xpath = new \DOMXPath($document);
     $paperElements = $xpath->query('//*[contains(@class, "paper-card")]');
 
     foreach ($paperElements as $paper) {
@@ -61,7 +62,9 @@ class Scrapper {
     return $papers;
   }
 
-  // Function writeXlsx: Writes data to an XLSX file.
+  /**
+   * Function writeXlsx: Writes data to an XLSX file.
+   */
   public function writeXlsx(array $data, string $path): void {
     $formattedData = $this->formatData($data);
 
@@ -96,6 +99,9 @@ class Scrapper {
     $writer->close();
   }
 
+  /**
+   * Formats data objects to 2D array with header (max 9 authors).
+   */
   public function formatData(array $data): array {
     $formattedData = [];
 
