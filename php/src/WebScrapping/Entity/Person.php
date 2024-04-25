@@ -5,8 +5,7 @@ namespace Chuva\Php\WebScrapping\Entity;
 /**
  * Paper Author personal information.
  */
-class Person
-{
+class Person {
   /**
    * Person name.
    */
@@ -23,5 +22,5 @@ class Person
   public function __construct($name, $institution) {
     $this->name = $name;
     $this->institution = $institution;
-    }
+  }
 }
