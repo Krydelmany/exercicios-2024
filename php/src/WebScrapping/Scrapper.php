@@ -59,7 +59,7 @@ class Scrapper {
     return $papers;
   }
 
-    public function writeXlsx(array $data, string $path): void {
+  public function writeXlsx(array $data, string $path): void {
     $formattedData = $this->formatData($data);
 
     $writer = WriterEntityFactory::createXLSXWriter();
@@ -91,40 +91,42 @@ class Scrapper {
     }
 
     $writer->close();
-    }
+  }
 
   public function formatData(array $data): array {
     $formattedData = [];
 
     // Set header row.
     $formattedData[] = ['ID',
-    'Title', 
-    'Type', 
-    'Author 1', 
-    'Author 1 Institution', 
-    'Author 2', 
-    'Author 2 Institution', 
-    'Author 3', 
-    'Author 3 Institution', 
-    'Author 4', 
-    'Author 4  Institution', 
-    'Author 5', 
-    'Author 5 Institution', 
-    'Author 6', 
-    'Author 6 Institution', 
-    'Author 7', 
-    'Author 7 Institution', 
-    'Author 8', 
-    'Author 8 Institution', 
-    'Author 9',  
-    'Author 9 Institution'];
+      'Title',
+      'Type',
+      'Author 1',
+      'Author 1 Institution',
+      'Author 2',
+      'Author 2 Institution',
+      'Author 3',
+      'Author 3 Institution',
+      'Author 4',
+      'Author 4  Institution',
+      'Author 5',
+      'Author 5 Institution',
+      'Author 6',
+      'Author 6 Institution',
+      'Author 7',
+      'Author 7 Institution',
+      'Author 8',
+      'Author 8 Institution',
+      'Author 9',
+      'Author 9 Institution'
+      ];
 
     // Format data rows.
     foreach ($data as $paper) {
       $formattedPaper = [
-      $paper->id,
-      $paper->title,
-      $paper->type,];
+        $paper->id,
+        $paper->title,
+        $paper->type, 
+        ];
 
       foreach ($paper->authors as $author) {
         $formattedPaper[] = $author->name;
