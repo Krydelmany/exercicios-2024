@@ -15,6 +15,7 @@ class Main {
     $dom->loadHTMLFile(__DIR__ . '/../../assets/origin.html');
     
     $scrapper = new Scrapper();
+    
     $scrapper->scrapAndWriteXlsx($dom, 'assets/data_origin.xlsx');
   }
 }
